@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace THE_dungeon_crawler_game
 {
@@ -9,8 +11,19 @@ namespace THE_dungeon_crawler_game
     /// </summary>
     public class Gameworld : Game
     {
+        private static ContentManager contentManager;
+        public static ContentManager ContentManager
+        {
+            get
+            {
+                return contentManager;
+            }
+        }
+
+        private List<GameObject> gameObjects;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private bool isPaused;
 
         public Gameworld()
         {
@@ -27,7 +40,8 @@ namespace THE_dungeon_crawler_game
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            contentManager = Content;
+            gameObjects = new List<GameObject>();
             base.Initialize();
         }
 
@@ -63,6 +77,13 @@ namespace THE_dungeon_crawler_game
                 Exit();
 
             // TODO: Add your update logic here
+            if (!isPaused)
+            {
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Update(gameTime);
+                }
+            }
 
             base.Update(gameTime);
         }
@@ -76,6 +97,12 @@ namespace THE_dungeon_crawler_game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObject.Draw(spriteBatch, gameTime);
+            }
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

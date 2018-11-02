@@ -18,7 +18,7 @@ namespace THE_dungeon_crawler_game
 
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
         }
