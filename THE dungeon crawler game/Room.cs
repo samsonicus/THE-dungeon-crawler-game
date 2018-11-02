@@ -11,6 +11,13 @@ namespace THE_dungeon_crawler_game
     class Room
     {
         private RoomType roomType = RoomType.NormalRoom;
+        public RoomType RoomType
+        {
+            get
+            {
+                return roomType;
+            }
+        }
         private Point roomMapPos;
         private GameObject[,] roomTiles;
 
@@ -18,16 +25,17 @@ namespace THE_dungeon_crawler_game
         /// Room constructor
         /// </summary>
         /// <param name="roomMapPos">The posistion of the room in the game map</param>
-        public Room(Point roomMapPos)
+        public Room(Point roomMapPos,RoomType roomType)
         {
             roomTiles = new GameObject[16, 12];
             this.roomMapPos = roomMapPos;
-
+            this.roomType = roomType;
+            
         }
 
-        public static Room Generate(Point roomMapPos)
+        public static Room GenerateRoom(Point roomMapPos)
         {
-            return new Room(roomMapPos); 
+            return new Room(roomMapPos, RoomType.NormalRoom); 
         }
     }
 }
