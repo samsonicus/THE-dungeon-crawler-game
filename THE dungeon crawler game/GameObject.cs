@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 namespace THE_dungeon_crawler_game
 {
     class GameObject
-    {
+    {/// <summary>
+    /// mojn
+    /// </summary>
+    /// <param name="gameTime"></param>
 
 
 
