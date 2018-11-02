@@ -10,7 +10,10 @@ namespace THE_dungeon_crawler_game
 {
     class GameObject
     {
+        public GameObject()
+        {
 
+        }
 
 
         public virtual void Update(GameTime gameTime)
