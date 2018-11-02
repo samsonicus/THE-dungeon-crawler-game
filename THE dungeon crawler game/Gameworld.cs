@@ -7,12 +7,12 @@ namespace THE_dungeon_crawler_game
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Gameworld : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        public Gameworld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
