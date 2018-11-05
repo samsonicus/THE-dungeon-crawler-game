@@ -42,7 +42,7 @@ namespace THE_dungeon_crawler_game
             // TODO: Add your initialization logic here
             contentManager = Content;
             gameObjects = new List<GameObject>();
-            base.Initialize();
+            base.Initialize();  
         }
 
         /// <summary>
