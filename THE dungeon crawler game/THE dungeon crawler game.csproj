@@ -58,7 +58,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\FloorTileSheet.png" />
+    <Content Include="Content\guardbot1.png" />
+    <Content Include="Content\hoverbot1sheet.png" />
+    <Content Include="Content\rpgcritter.png" />
+    <Content Include="Content\treadbot1sheet.png" />
     <Content Include="Icon.ico" />
+    <Content Include="TextFiles\EnemySprites.txt" />
+    <Content Include="TextFiles\PlayerSprites.txt" />
+    <Content Include="TextFiles\TerrainSprites.txt" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

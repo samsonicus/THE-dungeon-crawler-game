@@ -1,0 +1,4 @@
+﻿guardbot1.png
+hoverbot1.png
+treadbot1sheet.png
+rpgcritter.png
