@@ -13,6 +13,9 @@ namespace THE_dungeon_crawler_game
         private int mapWidth;
         private int mapHeight;
         private Room[,] roomsLayout;
+        /// <summary>
+        /// Returns the 2d array of rooms in the map
+        /// </summary>
         public Room[,] RoomsLayout
         {
             get
@@ -21,7 +24,9 @@ namespace THE_dungeon_crawler_game
             }
         }
 
-
+        /// <summary>
+        /// Constructer for the GameMap Object
+        /// </summary>
         public GameMap()
         {
             mapWidth = 5;
@@ -30,6 +35,11 @@ namespace THE_dungeon_crawler_game
             GenerateRooms();
         }
 
+        /// <summary>
+        /// Constructer for the GameMap Object
+        /// </summary>
+        /// <param name="mapWidth">The amount of rooms wide the map should be</param>
+        /// <param name="mapHeight">The amount of rooms heigh the map should be</param>
         public GameMap(int mapWidth,int mapHeight)
         {
             this.mapWidth = mapWidth;
