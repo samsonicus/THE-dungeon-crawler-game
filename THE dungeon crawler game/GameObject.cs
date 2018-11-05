@@ -15,7 +15,6 @@ namespace THE_dungeon_crawler_game
 
         }
 
-
         public virtual void Update(GameTime gameTime)
         {
 
