@@ -47,11 +47,18 @@ namespace THE_dungeon_crawler_game
             roomsLayout = new Room[mapHeight, mapWidth];
             GenerateRooms();
         }
+        /// <summary>
+        /// Generates a new 5x5 map
+        /// </summary>
+        /// <returns>returns the new map</returns>
         public static GameMap GenerateMap()
         {
             return new GameMap();
         }
 
+        /// <summary>
+        /// Generates the rooms in the map
+        /// </summary>
         private void GenerateRooms()
         {
             for (int i = 0; i < mapHeight; i++)

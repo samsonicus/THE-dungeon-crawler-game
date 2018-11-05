@@ -36,6 +36,28 @@ namespace THE_dungeon_crawler_game
             this.roomType = roomType; 
         }
 
+        private void Genrerate()
+        {
+            for (int i = 0; i < roomTiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < roomTiles.GetLength(1); j++)
+                {
+                    //Need a texture
+                    //roomTiles[i, j] = new Tiles(new Vector2(i * 32, j * 32), "test");
+                }
+            }
+            if (!ValidateRoom())
+            {
+                Genrerate();
+            }
+        }
+
+        private bool ValidateRoom()
+        {
+            //TODO
+            return true;
+        }
+
         /// <summary>
         /// Generate a new Room object
         /// </summary>
