@@ -16,7 +16,7 @@ namespace THE_dungeon_crawler_game
         protected float rotation;
         public Vector2 Position { get => position; }
 
-        Rectangle[] animationRectangles;
+        protected Rectangle[] animationRectangles;
 
         float animationFPS = 10;
         int currentAnimationIndex = 0;
@@ -35,7 +35,7 @@ namespace THE_dungeon_crawler_game
         {
             get
             {
-                return new Rectangle((int)(position.X - sprite.Width * 0.5), (int)(position.Y - sprite.Height * 0.5), sprite.Width, sprite.Height);
+               return new Rectangle((int)(position.X - sprite.Width- animationRectangles[0].Width * 0.5), (int)(position.Y - sprite.Height-animationRectangles[0 ].Height * 0.5), animationRectangles[0].Width, animationRectangles[0].Height);
             }
         }
 
@@ -55,7 +55,7 @@ namespace THE_dungeon_crawler_game
         /// The default constructor for a gameobject
         /// </summary>
         /// <param name="spriteName">The name of the sprite used for the GameObject</param>
-        public GameObject(string spriteName) : this(Vector2.Zero, spriteName)
+        public GameObject(int frameCount, float animationFPS,string spriteName) : this(frameCount, animationFPS,Vector2.Zero, spriteName)
         {
             //this.content = Gameworld.ContentManager;
         }
@@ -67,11 +67,22 @@ namespace THE_dungeon_crawler_game
         /// <param name="content">A referance for the ContentManager for loadingresources</param>
         /// <param name="spriteName">The name of the texture used for the GameObject</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
-        public GameObject(Vector2 starPosition, string spriteName)
+        public GameObject(int frameCount, float animationFPS, Vector2 starPosition, string spriteName)
         {
             position = starPosition;
             sprite = Gameworld.ContentManager.Load<Texture2D>(spriteName);
+            this.animationFPS = animationFPS;
+            animationRectangles = new Rectangle[frameCount];
+
+            for (int i = 0; i < frameCount; i++)
+            {
+                animationRectangles[i] = new Rectangle((i * sprite.Width / frameCount), 0, (sprite.Width / frameCount), sprite.Height);
+            }
+            currentAnimationIndex = 0;
+
         }
+
+
 
         public virtual void Update(GameTime gameTime)
         {
