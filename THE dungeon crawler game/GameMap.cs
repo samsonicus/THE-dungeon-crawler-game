@@ -48,7 +48,7 @@ namespace THE_dungeon_crawler_game
             {
                 for (int j = 0; j < mapWidth; j++)
                 {
-                    roomsLayout[i, j] = Room.Generate(new Point(i, j));
+                    roomsLayout[i, j] = Room.GenerateRoom(new Point(i, j));
                 }
             }
         }
