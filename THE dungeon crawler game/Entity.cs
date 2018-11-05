@@ -7,27 +7,20 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    class Entity : GameObject
+    internal class Entity : GameObject
     {
-        private int speed;
-        private Vector2 direction;
-        List<GameObject> gameObject;
+        public int speed;
+        public Vector2 direction;
 
 
         virtual protected void Die()
         {
-         
             
+
+
         }
 
         public void Move()
-        {
-
-
-
-        }
-
-        public void Generate(Vector2 startPosition, string spriteName)
         {
 
 

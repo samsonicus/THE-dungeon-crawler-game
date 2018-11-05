@@ -11,6 +11,8 @@ namespace THE_dungeon_crawler_game
     /// </summary>
     public class Gameworld : Game
     {
+
+
         private static ContentManager contentManager;
         public static ContentManager ContentManager
         {
@@ -20,7 +22,10 @@ namespace THE_dungeon_crawler_game
             }
         }
 
-        private List<GameObject> gameObjects;
+        private List<GameObject> gameObjects = new List<GameObject>();
+        private static List<GameObject> toBeAdded = new List<GameObject>();
+        private static List<GameObject> toBeRemoved = new List<GameObject>();
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private bool isPaused;
@@ -88,6 +93,8 @@ namespace THE_dungeon_crawler_game
             base.Update(gameTime);
         }
 
+
+        
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>

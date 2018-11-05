@@ -15,7 +15,7 @@ namespace THE_dungeon_crawler_game
         protected Vector2 position;
         protected float rotation;
         public Vector2 Position { get => position; }
-
+        public List<GameObject> gameObjects;
         protected Rectangle[] animationRectangles;
 
         float animationFPS = 10;
@@ -49,7 +49,24 @@ namespace THE_dungeon_crawler_game
             return CollisionBox.Intersects(otherObject.CollisionBox);
         }
 
+        public virtual void DoCollision(GameObject gameObject)
+        {
+
+        }
+
         #endregion
+
+
+
+
+        /// <summary>
+        /// Constructor with 0 arguments
+        /// </summary>
+
+        public GameObject()
+        {
+
+        }
 
         /// <summary>
         /// The default constructor for a gameobject
