@@ -29,8 +29,7 @@ namespace THE_dungeon_crawler_game
         {
             roomTiles = new GameObject[16, 12];
             this.roomMapPos = roomMapPos;
-            this.roomType = roomType;
-            
+            this.roomType = roomType; 
         }
 
         public static Room GenerateRoom(Point roomMapPos)
