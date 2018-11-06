@@ -91,6 +91,9 @@ namespace THE_dungeon_crawler_game
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Player john = new Player(4, 5, new Vector2(20, 20), "Player", 10, new Vector2(1, 1));
+            gameObjects.Add(john);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -140,7 +143,7 @@ namespace THE_dungeon_crawler_game
             spriteBatch.Begin();
             foreach (GameObject gameObject in gameObjects)
             {
-                gameObject.Draw(spriteBatch, gameTime);
+                gameObject.Draw(spriteBatch);
             }
             spriteBatch.End();
 

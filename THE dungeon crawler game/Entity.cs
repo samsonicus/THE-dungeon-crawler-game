@@ -36,6 +36,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime">Amount of time elapsed since last Update()</param>
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 

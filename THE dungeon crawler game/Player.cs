@@ -28,6 +28,7 @@ namespace THE_dungeon_crawler_game
       
         public override void DoCollision(GameObject otherObject)
         {
+            
             if (otherObject is Projectile || otherObject is Enemy)
             {
                 health--;

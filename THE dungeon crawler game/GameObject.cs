@@ -97,6 +97,7 @@ namespace THE_dungeon_crawler_game
 
         public virtual void Update(GameTime gameTime)
         {
+
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
             currentAnimationIndex = (int)(timeElapsed * animationFPS);
 
@@ -113,9 +114,9 @@ namespace THE_dungeon_crawler_game
         /// </summary>
         /// <param name="spriteBatch">The spritebatch used for the drawing</param>
         /// <param name="gameTime"></param>
-        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f),1f, new SpriteEffects(),0f);
+            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White);
 
         }
     }
