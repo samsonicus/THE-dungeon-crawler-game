@@ -7,58 +7,42 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    internal class Entity : GameObject
+    internal class Entity : AnimatedGameObject
     {
 
         private float speed;
-        public float Speed { get => speed;}
-        public Vector2 direction;
+        public float Speed { get => speed; }
+        private Vector2 direction;
+        public Vector2 Direction { get => direction; }
 
-
-
-        /// <summary>
-        /// Default constructor for entity
-        /// </summary>
-        /// <param name="spriteName"></param>
-        /// <param name="startPosition"></param>
-        public Entity(string spriteName, Vector2 startPosition, float speed)
+        public Entity(int speed, Vector2 direction, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) : 
+            base(frameCount, animationFPS, startPosition, spriteName)
         {
-
+            this.direction = direction;
+            this.direction.Normalize();
+            this.speed = speed;
+            
         }
 
 
-        /// <summary>
-        /// Constructor for entity with animations
-        /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="spriteName"></param>
-        /// <param name="startPosition"></param>
-        public Entity(int frameCount, float animationFPS, string spriteName, Vector2 startPosition):base(frameCount, animationFPS, startPosition, "tesrr")
+
+        public override void Update(GameTime gameTime)
         {
-
-        }
-
-      
-
-        /// <summary>
-        /// Enables the Entity to have defined game logic.
-        /// </summary>
-        /// <param name="gameTime">Amount of time elapsed since last Update()</param>
-        public virtual void Update(GameTime gameTime)
-        {
+            base.Update(gameTime);
+           
+            position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         }
 
 
         virtual protected void Die()
         {
-           
+
         }
 
-      
 
-        
+
+
 
     }
 }
