@@ -1,4 +1,4 @@
-﻿guardbot1.png
-hoverbot1.png
-treadbot1sheet.png
+﻿guardbot1.png,3
+hoverbot1.png,3
+treadbot1sheet.png,5
 rpgcritter.png
