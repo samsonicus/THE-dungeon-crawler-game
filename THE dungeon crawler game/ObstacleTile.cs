@@ -16,17 +16,20 @@ namespace THE_dungeon_crawler_game
 
         public void DoCollision()
         {
-            throw new NotImplementedException();
+            
         }
 
-        public bool IsColliding()
+        public bool IsColliding(ICollidable otherCollidable)
         {
-            throw new NotImplementedException();
+            return CollisionBox.Intersects(otherCollidable.CollisionBox);
         }
 
-         Rectangle ICollidable.CollisionBox
+        public Rectangle CollisionBox
         {
-            throw new NotImplementedException();
+            get
+            {
+                return new Rectangle((int)position.X, (int)position.Y, 32, 32);
+            }
         }
     }
 }
