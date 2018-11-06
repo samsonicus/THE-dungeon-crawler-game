@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace THE_dungeon_crawler_game
@@ -9,7 +10,7 @@ namespace THE_dungeon_crawler_game
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Gameworld : Game
+    public class GameWorld : Game
     {
 
 
@@ -25,12 +26,44 @@ namespace THE_dungeon_crawler_game
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
+        private static GraphicsDeviceManager graphics;
 
-        GraphicsDeviceManager graphics;
+
+        public static Rectangle ScreenSize
+        {
+            get
+            {
+                return graphics.GraphicsDevice.Viewport.Bounds;
+            }
+        }
+
+        #region Add/Remove methods
+
+
+        /// <summary>
+        /// Adds a gameobject to the toBeAdded list.
+        /// </summary>
+        /// <param name="go"></param>
+        public static void AddGameObject(GameObject go)
+        {
+            toBeAdded.Add(go);
+        }
+
+        /// <summary>
+        /// Removes an object, by adding it to the toBeRemoved list.
+        /// </summary>
+        /// <param name="go"></param>
+        public static void RemoveGameObject(GameObject go)
+        {
+            toBeRemoved.Add(go);
+        }
+        #endregion  
+
+
         SpriteBatch spriteBatch;
         private bool isPaused;
 
-        public Gameworld()
+        public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -113,5 +146,7 @@ namespace THE_dungeon_crawler_game
 
             base.Draw(gameTime);
         }
+
+
     }
 }

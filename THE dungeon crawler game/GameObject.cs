@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
-    class GameObject
+    public class GameObject
     {
         protected Texture2D sprite;
         protected Vector2 position;
@@ -17,6 +17,9 @@ namespace THE_dungeon_crawler_game
         public Vector2 Position { get => position; }
         public List<GameObject> gameObjects;
         protected Rectangle[] animationRectangles;
+
+        private int baseFrameCount = 1;
+        private float baseAnimationFPS = 1;
 
         float animationFPS = 10;
         int currentAnimationIndex = 0;
@@ -74,11 +77,12 @@ namespace THE_dungeon_crawler_game
         /// <param name="spriteName">The name of the sprite used for the GameObject</param>
         public GameObject(int frameCount, float animationFPS,string spriteName) : this(frameCount, animationFPS,Vector2.Zero, spriteName)
         {
-            //this.content = Gameworld.ContentManager;
+            frameCount = baseFrameCount;
+            animationFPS = baseAnimationFPS;
         }
 
         /// <summary>
-        /// The constructor for a GameObject without animations. 
+        /// The constructor for a GameObject with animations. 
         /// </summary>
         /// <param name="starPosition">The start position for the GameObject</param>
         /// <param name="content">A referance for the ContentManager for loadingresources</param>
@@ -87,7 +91,7 @@ namespace THE_dungeon_crawler_game
         public GameObject(int frameCount, float animationFPS, Vector2 starPosition, string spriteName)
         {
             position = starPosition;
-            sprite = Gameworld.ContentManager.Load<Texture2D>(spriteName);
+            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
             this.animationFPS = animationFPS;
             animationRectangles = new Rectangle[frameCount];
 

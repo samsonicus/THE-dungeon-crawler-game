@@ -11,18 +11,13 @@ namespace THE_dungeon_crawler_game
     {
 
         private const float moveSpeed = 100;
-
-
         private int health;
         public int Health
         {
             get { return health; }
         }
 
-        public Player():base()
-        {
-
-        }
+        //public Player():base()
 
 
         public override void DoCollision(GameObject otherObject)
