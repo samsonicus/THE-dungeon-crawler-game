@@ -31,7 +31,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="roomMapPos">The posistion of the room in the game map</param>
         public Room(Point roomMapPos,RoomType roomType)
         {
-            roomTiles = new Tiles[16, 12];
+            roomTiles = new Tiles[17, 13];
             this.roomMapPos = roomMapPos;
             this.roomType = roomType; 
         }
@@ -48,6 +48,7 @@ namespace THE_dungeon_crawler_game
             }
             if (!ValidateRoom())
             {
+                roomTiles = new Tiles[17, 13];
                 Genrerate();
             }
         }
