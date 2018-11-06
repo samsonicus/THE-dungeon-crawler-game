@@ -24,7 +24,7 @@ namespace THE_dungeon_crawler_game
             throw new NotImplementedException();
         }
 
-        Rectangle ICollidable.CollisionBox()
+         Rectangle ICollidable.CollisionBox
         {
             throw new NotImplementedException();
         }
