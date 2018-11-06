@@ -17,8 +17,10 @@ namespace THE_dungeon_crawler_game
             get { return health; }
         }
 
-        //public Player():base()
-
+        public Player():base("hero", )
+        {
+            health = 100;
+        }
 
         public override void DoCollision(GameObject otherObject)
         {

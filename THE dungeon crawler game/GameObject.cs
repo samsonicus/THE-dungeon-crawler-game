@@ -75,7 +75,7 @@ namespace THE_dungeon_crawler_game
         /// The default constructor for a gameobject
         /// </summary>
         /// <param name="spriteName">The name of the sprite used for the GameObject</param>
-        public GameObject(int frameCount, float animationFPS,string spriteName) : this(frameCount, animationFPS,Vector2.Zero, spriteName)
+        public GameObject(int frameCount, float animationFPS, string spriteName) : this(frameCount, animationFPS,Vector2.Zero, spriteName)
         {
             frameCount = baseFrameCount;
             animationFPS = baseAnimationFPS;
