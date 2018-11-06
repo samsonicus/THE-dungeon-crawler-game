@@ -12,12 +12,13 @@ namespace THE_dungeon_crawler_game
     {
         public Tiles(Vector2 starPosition, string spriteName) : base(starPosition, spriteName)
         {
+            
         }
 
         /// <summary>
-        /// Draws the 
+        /// Draws the the tile.
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The SpriteBatch used for drawing the sprite.</param>
         /// <param name="gameTime"></param>
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
