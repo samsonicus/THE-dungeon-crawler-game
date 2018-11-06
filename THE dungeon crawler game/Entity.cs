@@ -14,40 +14,29 @@ namespace THE_dungeon_crawler_game
         public float Speed { get => speed;}
         public Vector2 direction;
 
-
-
-        /// <summary>
-        /// Default constructor for entity
-        /// </summary>
-        /// <param name="spriteName"></param>
-        /// <param name="startPosition"></param>
-        public Entity(string spriteName, Vector2 startPosition, float speed)
+        public Entity(string spriteName, Vector2 position, float speed, Vector2 direction) : base(spriteName, position)
         {
+            this.speed = speed;
+            this.direction = direction;
 
         }
 
-
-        /// <summary>
-        /// Constructor for entity with animations
-        /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="spriteName"></param>
-        /// <param name="startPosition"></param>
-        public Entity(int frameCount, float animationFPS, string spriteName, Vector2 startPosition):base(frameCount, animationFPS, startPosition, "tesrr")
+        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, float speed, Vector2 direction) : 
+            base(frameCount, animationFPS, starPosition, spriteName)
         {
+            this.speed = speed;
+            this.direction = direction;
 
         }
 
-      
 
         /// <summary>
         /// Enables the Entity to have defined game logic.
         /// </summary>
         /// <param name="gameTime">Amount of time elapsed since last Update()</param>
-        public virtual void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-
+            position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
 

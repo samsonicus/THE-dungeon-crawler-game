@@ -59,39 +59,29 @@ namespace THE_dungeon_crawler_game
 
         #endregion
 
-
-
-
         /// <summary>
-        /// Constructor with 0 arguments
-        /// </summary>
-
-        public GameObject()
-        {
-
-        }
-
-        /// <summary>
-        /// The default constructor for a gameobject
+        /// The default constructor for a gameobject with name and position.
         /// </summary>
         /// <param name="spriteName">The name of the sprite used for the GameObject</param>
-        public GameObject(int frameCount, float animationFPS, string spriteName) : this(frameCount, animationFPS,Vector2.Zero, spriteName)
+        public GameObject(string spriteName, Vector2 position)
         {
-            frameCount = baseFrameCount;
-            animationFPS = baseAnimationFPS;
+            this.animationFPS = baseAnimationFPS;
+            this.position = position;
+            this.spriteName = spriteName;
+            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+
         }
 
         /// <summary>
         /// The constructor for a GameObject with animations. 
         /// </summary>
-        /// <param name="starPosition">The start position for the GameObject</param>
+        /// <param name="startPosition">The start position for the GameObject</param>
         /// <param name="content">A referance for the ContentManager for loadingresources</param>
         /// <param name="spriteName">The name of the texture used for the GameObject</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
-        public GameObject(int frameCount, float animationFPS, Vector2 starPosition, string spriteName)
+        public GameObject(int frameCount, float animationFPS, Vector2 startPosition, string spriteName) : this(spriteName, startPosition)
         {
-            position = starPosition;
-            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+            position = startPosition;
             this.animationFPS = animationFPS;
             animationRectangles = new Rectangle[frameCount];
 
@@ -107,6 +97,14 @@ namespace THE_dungeon_crawler_game
 
         public virtual void Update(GameTime gameTime)
         {
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimationIndex = (int)(timeElapsed * animationFPS);
+
+            if (currentAnimationIndex > animationRectangles.Length-1)
+            {
+                timeElapsed = 0;
+                currentAnimationIndex = 0;
+            }
 
         }
 
