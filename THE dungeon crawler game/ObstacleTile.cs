@@ -14,7 +14,7 @@ namespace THE_dungeon_crawler_game
 
         }
 
-        public void DoCollision()
+        public void DoCollision(ICollidable otherCollidable)
         {
             
         }
