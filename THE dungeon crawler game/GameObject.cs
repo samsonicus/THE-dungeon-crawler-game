@@ -63,6 +63,7 @@ namespace THE_dungeon_crawler_game
         /// The default constructor for a gameobject with name and position.
         /// </summary>
         /// <param name="spriteName">The name of the sprite used for the GameObject</param>
+        /// <param name="position">Determines the position of the sprite</param>
         public GameObject(string spriteName, Vector2 position)
         {
             this.animationFPS = baseAnimationFPS;
