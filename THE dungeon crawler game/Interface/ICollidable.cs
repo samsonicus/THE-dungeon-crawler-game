@@ -10,7 +10,7 @@ namespace THE_dungeon_crawler_game
     interface ICollidable
     {
         Rectangle CollisionBox { get; }
-        bool IsColliding();
-        void DoCollision();
+        bool IsColliding(ICollidable otherCollidable);
+        void DoCollision(ICollidable otherCollidable);
     }
 }

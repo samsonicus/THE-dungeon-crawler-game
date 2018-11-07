@@ -10,7 +10,7 @@ namespace THE_dungeon_crawler_game
 {
     class Tiles : GameObject
     {
-        public Tiles(Vector2 starPosition, string spriteName) : base(starPosition, spriteName)
+        public Tiles(Vector2 starPosition, string spriteName) : base(1,0,starPosition, spriteName)
         {
             
         }

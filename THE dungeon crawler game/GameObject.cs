@@ -26,8 +26,9 @@ namespace THE_dungeon_crawler_game
         private Vector2 zero;
         private string spriteName;
 
-
+        
         #region collision
+        /*
         /// <summary>
         /// CollisionBox for the Gameobject. Height and Width are based on the height and width of the sprite used. X and Y coordinates are based on the height and width of the sprite aswell.
         /// </summary>
@@ -48,7 +49,7 @@ namespace THE_dungeon_crawler_game
         {
             return CollisionBox.Intersects(otherObject.CollisionBox);
         }
-
+        */
         #endregion
 
         /// <summary>
