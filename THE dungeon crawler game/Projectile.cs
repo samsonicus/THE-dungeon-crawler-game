@@ -33,9 +33,9 @@ namespace THE_dungeon_crawler_game
 
         private void DealDamage(GameObject target)
         {
-            if (target is Enemy)//ICombatEntity)
+            if (target is ICombatEntity)
             {
-                //LoseHealth(damage);
+                LoseHealth(damage);
             }
         }
                                                                                     
@@ -46,7 +46,7 @@ namespace THE_dungeon_crawler_game
                 return;
             }
 
-            if (target is Enemy) //ICombatEntity
+            if (target is ICombatEntity) 
             {
                 DealDamage();
             }

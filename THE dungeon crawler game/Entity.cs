@@ -7,13 +7,13 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    internal class Entity : GameObject
+    internal class Entity : GameObject, ICombatEntity
     {
 
         private float speed;
         public float Speed { get => speed;}
         public Vector2 direction;
-
+        #region Constructors    
         /// <summary>
         /// Default constructor for Entity, without animation
         /// </summary>
@@ -44,8 +44,7 @@ namespace THE_dungeon_crawler_game
             this.direction = direction;
 
         }
-
-
+        #endregion  
         /// <summary>
         /// Enables the Entity to have defined game logic.
         /// </summary>
@@ -62,6 +61,7 @@ namespace THE_dungeon_crawler_game
            
         }
 
+       
       
 
         
