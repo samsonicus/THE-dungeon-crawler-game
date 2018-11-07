@@ -9,14 +9,17 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
-    class GameObject
+    public class GameObject
     {
         protected Texture2D sprite;
         protected Vector2 position;
         protected float rotation;
         public Vector2 Position { get => position; }
-
+        public List<GameObject> gameObjects;
         protected Rectangle[] animationRectangles;
+
+        private int baseFrameCount = 1;
+        private float baseAnimationFPS = 1;
 
         float animationFPS = 10;
         int currentAnimationIndex = 0;
@@ -53,25 +56,29 @@ namespace THE_dungeon_crawler_game
         #endregion
 
         /// <summary>
-        /// The default constructor for a gameobject
+        /// The default constructor for a gameobject with name and position.
         /// </summary>
         /// <param name="spriteName">The name of the sprite used for the GameObject</param>
-        public GameObject(int frameCount, float animationFPS,string spriteName) : this(frameCount, animationFPS,Vector2.Zero, spriteName)
+        /// <param name="position">Determines the position of the sprite</param>
+        public GameObject(string spriteName, Vector2 position)
         {
-            //this.content = Gameworld.ContentManager;
+            this.animationFPS = baseAnimationFPS;
+            this.position = position;
+            this.spriteName = spriteName;
+            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+
         }
 
         /// <summary>
-        /// The constructor for a GameObject without animations. 
+        /// The constructor for a GameObject with animations. 
         /// </summary>
-        /// <param name="starPosition">The start position for the GameObject</param>
+        /// <param name="startPosition">The start position for the GameObject</param>
         /// <param name="content">A referance for the ContentManager for loadingresources</param>
         /// <param name="spriteName">The name of the texture used for the GameObject</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
-        public GameObject(int frameCount, float animationFPS, Vector2 starPosition, string spriteName)
+        public GameObject(int frameCount, float animationFPS, Vector2 startPosition, string spriteName) : this(spriteName, startPosition)
         {
-            position = starPosition;
-            sprite = Gameworld.ContentManager.Load<Texture2D>(spriteName);
+            position = startPosition;
             this.animationFPS = animationFPS;
             animationRectangles = new Rectangle[frameCount];
 
@@ -88,6 +95,15 @@ namespace THE_dungeon_crawler_game
         public virtual void Update(GameTime gameTime)
         {
 
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimationIndex = (int)(timeElapsed * animationFPS);
+
+            if (currentAnimationIndex > animationRectangles.Length-1)
+            {
+                timeElapsed = 0;
+                currentAnimationIndex = 0;
+            }
+
         }
 
         /// <summary>
@@ -95,9 +111,9 @@ namespace THE_dungeon_crawler_game
         /// </summary>
         /// <param name="spriteBatch">The spritebatch used for the drawing</param>
         /// <param name="gameTime"></param>
-        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f),1f, new SpriteEffects(),0f);
+            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White);
 
         }
     }

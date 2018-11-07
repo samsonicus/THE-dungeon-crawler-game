@@ -14,7 +14,7 @@ namespace THE_dungeon_crawler_game
         [STAThread]
         static void Main()
         {
-            using (var game = new Gameworld())
+            using (var game = new GameWorld())
                 game.Run();
         }
     }
