@@ -92,10 +92,8 @@ namespace THE_dungeon_crawler_game
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            AnimatedGameObject aGO = new Entity(100, new Vector2(0.5f, 0.5f),4, 5, new Vector2(0.5f,0.5f), "HeroStrip");
-           //AnimatedGameObject aGO = new AnimatedGameObject(4, 5, new Vector2(new Random().Next(), new Random().Next()), "HeroStrip");
-            gameObjects.Add(aGO);
-            AddGameObject(aGO);
+            //Player john = new Player(4, 5, new Vector2(20, 20), "Player", 10, new Vector2(1, 1));
+            //gameObjects.Add(john);
 
 
             // TODO: use this.Content to load your game content here

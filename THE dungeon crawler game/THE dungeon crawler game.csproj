@@ -49,6 +49,7 @@
     <Compile Include="Gameworld.cs" />
     <Compile Include="Interface\ICollidable.cs" />
     <Compile Include="ICombatEntity.cs" />
+    <Compile Include="ObstacleTile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

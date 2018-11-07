@@ -7,16 +7,21 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    internal class Entity : AnimatedGameObject
+    class Entity : GameObject, ICombatEntity
     {
 
         private int speed;
-        public int Speed { get => speed; }
-        private Vector2 direction;
-        public Vector2 Direction { get => direction; }
-
-        public Entity(int speed, Vector2 direction, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) : 
-            base(frameCount, animationFPS, startPosition, spriteName)
+        public int Speed { get => speed;}
+        public Vector2 direction;
+        #region Constructors    
+        /// <summary>
+        /// Default constructor for Entity, without animation
+        /// </summary>
+        /// <param name="spriteName"></param>
+        /// <param name="position"></param>
+        /// <param name="speed"></param>
+        /// <param name="direction"></param>
+        public Entity(string spriteName, Vector2 position, float speed, Vector2 direction) : base(spriteName, position)
         {
             this.direction = direction;
             this.direction.Normalize();
@@ -24,15 +29,30 @@ namespace THE_dungeon_crawler_game
             
         }
 
-
         /// <summary>
-        /// Updates the GameObject Draw method, making it able to animate
+        /// Constructor for entity with animations.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="frameCount"></param>
+        /// <param name="animationFPS"></param>
+        /// <param name="starPosition"></param>
+        /// <param name="spriteName"></param>
+        /// <param name="speed"></param>
+        /// <param name="direction"></param>
+        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, float speed, Vector2 direction) : 
+            base(frameCount, animationFPS, starPosition, spriteName)
+        {
+            this.speed = speed;
+            this.direction = direction;
+
+        }
+        #endregion  
+        /// <summary>
+        /// Enables the Entity to have defined game logic.
+        /// </summary>
+        /// <param name="gameTime">Amount of time elapsed since last Update()</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-           
             position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
