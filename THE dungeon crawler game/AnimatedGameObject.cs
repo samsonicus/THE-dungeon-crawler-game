@@ -54,7 +54,7 @@ namespace THE_dungeon_crawler_game
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White);
+            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex],Color.White,rotation,new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f),1f,new SpriteEffects(), 0f);
         }
     }
 }

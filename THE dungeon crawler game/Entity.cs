@@ -25,17 +25,15 @@ namespace THE_dungeon_crawler_game
         }
 
 
-
+        /// <summary>
+        /// Updates the GameObject Draw method, making it able to animate
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
            
             position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-
-
-
-
         }
 
 

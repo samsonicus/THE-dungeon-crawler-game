@@ -10,10 +10,13 @@ namespace THE_dungeon_crawler_game
 {
     class Player : Entity
     {
-
         private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
-        private Vector2 direction = new Vector2(0, 0);       
+        private Vector2 direction = new Vector2(0, 0);    
+        public Vector2 playerDirection
+        {
+            get { return direction; }
+        }
         private double lastShot = 0;
 
         private int health;
