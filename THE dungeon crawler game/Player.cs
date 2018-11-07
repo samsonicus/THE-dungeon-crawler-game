@@ -15,8 +15,10 @@ namespace THE_dungeon_crawler_game
 
         public Player(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, float speed, Vector2 direction) : 
             base(frameCount, animationFPS, starPosition, spriteName, speed, direction)
-
         {
+
+
+
         }
 
         public int Health

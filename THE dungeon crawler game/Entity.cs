@@ -14,6 +14,13 @@ namespace THE_dungeon_crawler_game
         public float Speed { get => speed;}
         public Vector2 direction;
 
+        /// <summary>
+        /// Default constructor for Entity, without animation
+        /// </summary>
+        /// <param name="spriteName"></param>
+        /// <param name="position"></param>
+        /// <param name="speed"></param>
+        /// <param name="direction"></param>
         public Entity(string spriteName, Vector2 position, float speed, Vector2 direction) : base(spriteName, position)
         {
             this.speed = speed;
@@ -21,6 +28,15 @@ namespace THE_dungeon_crawler_game
 
         }
 
+        /// <summary>
+        /// Constructor for entity with animations.
+        /// </summary>
+        /// <param name="frameCount"></param>
+        /// <param name="animationFPS"></param>
+        /// <param name="starPosition"></param>
+        /// <param name="spriteName"></param>
+        /// <param name="speed"></param>
+        /// <param name="direction"></param>
         public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, float speed, Vector2 direction) : 
             base(frameCount, animationFPS, starPosition, spriteName)
         {
