@@ -7,59 +7,42 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    internal class Entity : GameObject
+    internal class Entity : AnimatedGameObject
     {
 
-        private int speed;
-        public int Speed { get => speed;}
-        public Vector2 direction;
-        
+        private float speed;
+        public float Speed { get => speed; }
+        private Vector2 direction;
+        public Vector2 Direction { get => direction; }
 
-        
-        
-        /// <summary>
-        /// Default constructor for Entity
-        /// </summary>
-        /// <param name="spriteName"></param>
-        public Entity(int speed, string spriteName):this(new Vector2(new Random().Next(GameWorld.ScreenSize.Width), new Random().Next(GameWorld.ScreenSize.Height)), spriteName, speed)
+        public Entity(int speed, Vector2 direction, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) : 
+            base(frameCount, animationFPS, startPosition, spriteName)
         {
-
-        }
-
-        /// <summary>
-        /// Concstructor with position and animation
-        /// </summary>
-        /// <param name="startPosition"></param>
-        /// <param name="spriteName"></param>
-
-        public Entity(Vector2 startPosition, string spriteName, int speed) : base()
-        {
+            this.direction = direction;
+            this.direction.Normalize();
             this.speed = speed;
-            position = startPosition;
-
+            
         }
 
-        /// <summary>
-        /// Enables the Entity to have defined game logic.
-        /// </summary>
-        /// <param name="gameTime">Amount of time elapsed since last Update()</param>
-        public virtual void Update(GameTime gameTime)
+
+
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+           
+            position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         }
 
 
         virtual protected void Die()
         {
-           
-        }
-
-        virtual public void Move()
-        {
 
         }
 
-        
+
+
+
 
     }
 }

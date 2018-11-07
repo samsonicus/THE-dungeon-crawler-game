@@ -12,7 +12,7 @@ namespace THE_dungeon_crawler_game
     /// </summary>
     public class GameWorld : Game
     {
-
+        
 
         private static ContentManager contentManager;
         public static ContentManager ContentManager
@@ -91,6 +91,11 @@ namespace THE_dungeon_crawler_game
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            AnimatedGameObject aGO = new Entity(100, new Vector2(0.5f, 0.5f),4, 5, new Vector2(0.5f,0.5f), "HeroStrip");
+           //AnimatedGameObject aGO = new AnimatedGameObject(4, 5, new Vector2(new Random().Next(), new Random().Next()), "HeroStrip");
+            gameObjects.Add(aGO);
+            AddGameObject(aGO);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -140,7 +145,7 @@ namespace THE_dungeon_crawler_game
             spriteBatch.Begin();
             foreach (GameObject gameObject in gameObjects)
             {
-                gameObject.Draw(spriteBatch, gameTime);
+                gameObject.Draw(spriteBatch);
             }
             spriteBatch.End();
 

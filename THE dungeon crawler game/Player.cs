@@ -9,19 +9,21 @@ namespace THE_dungeon_crawler_game
 {
     class Player : Entity
     {
-        new Vector2 startPos;
-        private const int moveSpeed = 100;
+
+        private const float moveSpeed = 100;
         private int health;
+
+        public Player(int speed, Vector2 direction, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) 
+            : base(speed, direction, frameCount, animationFPS, startPosition, spriteName)
+        {
+        }
+
         public int Health
         {
             get { return health; }
         }
 
-        public Player():base(moveSpeed,"test" )
-        {
-
-        }
-
+       
 
         public override void DoCollision(GameObject otherObject)
         {
