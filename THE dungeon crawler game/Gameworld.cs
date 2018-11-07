@@ -12,7 +12,8 @@ namespace THE_dungeon_crawler_game
     /// </summary>
     public class GameWorld : Game
     {
-        
+
+        public static float updateSpeed = 1;
 
         private static ContentManager contentManager;
         public static ContentManager ContentManager

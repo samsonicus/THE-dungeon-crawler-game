@@ -10,8 +10,8 @@ namespace THE_dungeon_crawler_game
     internal class Entity : AnimatedGameObject
     {
 
-        private float speed;
-        public float Speed { get => speed; }
+        private int speed;
+        public int Speed { get => speed; }
         private Vector2 direction;
         public Vector2 Direction { get => direction; }
 
@@ -31,6 +31,10 @@ namespace THE_dungeon_crawler_game
             base.Update(gameTime);
            
             position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+
+
 
         }
 
