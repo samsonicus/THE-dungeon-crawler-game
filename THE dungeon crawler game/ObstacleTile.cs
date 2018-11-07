@@ -16,7 +16,7 @@ namespace THE_dungeon_crawler_game
 
         public void DoCollision(ICollidable otherCollidable)
         {
-            
+            //TODO - Finalize collision handling
         }
 
         public bool IsColliding(ICollidable otherCollidable)
