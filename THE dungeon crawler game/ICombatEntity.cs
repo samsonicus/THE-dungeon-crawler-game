@@ -8,6 +8,7 @@ namespace THE_dungeon_crawler_game
 {
     interface ICombatEntity
     {
+        int Health { get;}
         void Attack();
         void GainHealth();
         void LoseHealth();
