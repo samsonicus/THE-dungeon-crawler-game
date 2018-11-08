@@ -50,6 +50,7 @@
     <Compile Include="Interface\ICollidable.cs" />
     <Compile Include="Interface\ICombatEntity.cs" />
     <Compile Include="ObstacleTile.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,7 @@
     <Content Include="Content\guardbot1.png" />
     <Content Include="Content\hoverbot1sheet.png" />
     <Content Include="Content\Player.png" />
+    <Content Include="Content\Player2.png" />
     <Content Include="Content\rpgcritter.png" />
     <Content Include="Content\Tiles\BlueDoor.png" />
     <Content Include="Content\Tiles\BluePurpleGrid.png" />

@@ -12,7 +12,7 @@ namespace THE_dungeon_crawler_game
     {
         private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
-        private Vector2 direction = new Vector2(0, 0);    
+        private Vector2 pDirection = new Vector2(0, 0);    
         public Vector2 playerDirection
         {
             get { return direction; }
@@ -34,8 +34,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">The amount of frames needed for the animation</param>
         /// <param name="startPosition">The starting position for the player ovject</param>
         /// <param name="spriteName">the name of the sprite used for the player</param>
-        public Player(int moveSpeed, Vector2 direction, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) 
-            : base(moveSpeed, direction, frameCount, animationFPS, startPosition, spriteName)
+        public Player(int moveSpeed, Vector2 pDirection, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCount,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
         {
             health = 100;
             moveSpeed = playerSpeed;
@@ -71,8 +70,8 @@ namespace THE_dungeon_crawler_game
             }
 
 
-            direction = new Vector2((float)Math.Cos(rotation - MathHelper.Pi * 0.5f), (float)Math.Sin(rotation - MathHelper.Pi * 0.5f));
-            position += direction * (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+            pDirection = new Vector2((float)Math.Cos(rotation - MathHelper.Pi * 0.5f), (float)Math.Sin(rotation - MathHelper.Pi * 0.5f));
+          //  position += direction * (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
 
 
 
