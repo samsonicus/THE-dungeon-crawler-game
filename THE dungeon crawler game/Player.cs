@@ -71,8 +71,14 @@ namespace THE_dungeon_crawler_game
 
 
             pDirection = new Vector2((float)Math.Cos(rotation - MathHelper.Pi * 0.5f), (float)Math.Sin(rotation - MathHelper.Pi * 0.5f));
-          //  position += direction * (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+            //position += direction * (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
 
+                lastShot += gameTime.ElapsedGameTime.TotalSeconds;
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 0.3f)
+            {
+                GameWorld.AddGameObject(new Projectile(1, 1, position, "Player", 50, direction, 10, new Entity("Player2", position, 1, direction)));
+                lastShot = 0;
+                }
 
 
             base.Update(gameTime);
