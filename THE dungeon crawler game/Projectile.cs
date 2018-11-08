@@ -7,11 +7,12 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    class Projectile : Entity
+    class Projectile : Entity, ICollidable
     {
         private const float movementSpeed = 100;
         private Entity owner;
         private int damage;
+        
         /// <summary>
         /// Default constructor for projectile.
         /// </summary>
@@ -31,24 +32,24 @@ namespace THE_dungeon_crawler_game
             this.direction.Normalize(); //normalizes the path of the projectile
         }
 
-        private void DealDamage(GameObject target)
+        private void DealDamage(ICombatEntity target)
         {
             if (target is ICombatEntity)
             {
-                LoseHealth(damage);
+                
             }
         }
                                                                                     
-        public override void DoCollision(GameObject target)
+        public void DoCollision(ICollidable target)
         {
             if (target.Equals(owner))
             {
                 return;
             }
 
-            if (target is ICombatEntity) 
+            if (target is Enemy) 
             {
-                DealDamage();
+                DealDamage(target);
             }
            
 
@@ -72,7 +73,28 @@ namespace THE_dungeon_crawler_game
 
             
         }
+        
+       /// <summary>
+       /// CollisionBox for the Gameobject. Height and Width are based on the height and width of the sprite used. X and Y coordinates are based on the height and width of the sprite aswell.
+       /// </summary>
+       public virtual Rectangle CollisionBox
+       {
+           get
+           {
+              return new Rectangle((int)(position.X - sprite.Width- animationRectangles[0].Width * 0.5), (int)(position.Y - sprite.Height-animationRectangles[0 ].Height * 0.5), animationRectangles[0].Width, animationRectangles[0].Height);
+           }
+       }
 
+       /// <summary>
+       /// IsColliding checks wether a GameObject is colliding with another GameObject (here otherObject) 
+       /// </summary>
+       /// <param name="otherObject">The object that is tested agaisnt</param>
+       /// <returns>If the objects are colliding, return true, else return felse.</returns>
+       public bool IsColliding(ICollidable otherObject)
+       {
+           return CollisionBox.Intersects(otherObject.CollisionBox);
+       }
+       
 
     }
 

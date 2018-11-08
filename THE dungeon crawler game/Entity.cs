@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    internal class Entity : GameObject, ICombatEntity
+    internal class Entity : GameObject
     {
 
         private float speed;
@@ -54,6 +54,8 @@ namespace THE_dungeon_crawler_game
             base.Update(gameTime);
             position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
+
+        
 
 
         virtual protected void Die()
