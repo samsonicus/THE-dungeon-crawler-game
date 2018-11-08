@@ -13,6 +13,7 @@ namespace THE_dungeon_crawler_game
     public class GameWorld : Game
     {
 
+        public static float updateSpeed = 1;
 
         private static ContentManager contentManager;
         public static ContentManager ContentManager
@@ -28,6 +29,7 @@ namespace THE_dungeon_crawler_game
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         private static GraphicsDeviceManager graphics;
 
+        private Player player;
 
         public static Rectangle ScreenSize
         {
@@ -95,6 +97,8 @@ namespace THE_dungeon_crawler_game
             //gameObjects.Add(john);
 
 
+            player = new Player(10, new Vector2(10,10), 4, 1, new Vector2(1,1), "Player2");
+            gameObjects.Add(player);
             // TODO: use this.Content to load your game content here
         }
 
