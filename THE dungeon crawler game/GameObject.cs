@@ -13,6 +13,7 @@ namespace THE_dungeon_crawler_game
     {
         protected Texture2D sprite;
         protected Vector2 position;
+        private float animationFPS;
         protected float rotation;
         public Vector2 Position { get => position; }
         
@@ -21,16 +22,23 @@ namespace THE_dungeon_crawler_game
 
         private Vector2 zero;
         private string spriteName;
-
+        private float baseAnimationFPS;
+        Rectangle[] animationRectangles;
+        //double timeElapsed = 0;
+        int currentAnimationIndex = 0;
         
+
         #region collision
-        /*
+       
         /// <summary>
         /// CollisionBox for the Gameobject. Height and Width are based on the height and width of the sprite used. X and Y coordinates are based on the height and width of the sprite aswell.
         /// </summary>
-        public abstract Rectangle CollisionBox
+        public virtual Rectangle CollisionBox
         {
-            get;
+            get
+            {
+                return new Rectangle((int)(position.X - sprite.Width * 0.5), (int)(position.Y - sprite.Height * 0.5), sprite.Width, sprite.Height);
+            }
             
         }
 
@@ -39,11 +47,16 @@ namespace THE_dungeon_crawler_game
         /// </summary>
         /// <param name="otherObject">The object that is tested agaisnt</param>
         /// <returns>If the objects are colliding, return true, else return felse.</returns>
-        public bool isColliding(GameObject otherObject)
+        public bool IsColliding(GameObject otherObject)
         {
             return CollisionBox.Intersects(otherObject.CollisionBox);
         }
-        */
+
+        public virtual void DoCollision(GameObject gameObject)
+        {
+
+        }
+
         #endregion
 
         /// <summary>
@@ -81,17 +94,17 @@ namespace THE_dungeon_crawler_game
 
         }
 
+        public virtual void Update(GameTime gameTime) { 
+        timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+        currentAnimationIndex = (int)(timeElapsed * animationFPS);
 
-            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
-            currentAnimationIndex = (int)(timeElapsed * animationFPS);
-
-            if (currentAnimationIndex > animationRectangles.Length-1)
-            {
-                timeElapsed = 0;
-                currentAnimationIndex = 0;
-            }
-
+        if (currentAnimationIndex > animationRectangles.Length-1)
+        {
+            timeElapsed = 0;
+            currentAnimationIndex = 0;
         }
+
+    }
 
         /// <summary>
         /// Standart draw function for game objects. SImply draws the sprite given to it.

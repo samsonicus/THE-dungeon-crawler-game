@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    class Entity : GameObject, ICombatEntity
+    class Entity : GameObject
     {
 
         private int speed;
@@ -21,7 +21,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="position"></param>
         /// <param name="speed"></param>
         /// <param name="direction"></param>
-        public Entity(string spriteName, Vector2 position, float speed, Vector2 direction) : base(spriteName, position)
+        public Entity(string spriteName, Vector2 position, int speed, Vector2 direction) : base(spriteName, position)
         {
             this.direction = direction;
             this.direction.Normalize();
@@ -38,7 +38,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="spriteName"></param>
         /// <param name="speed"></param>
         /// <param name="direction"></param>
-        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, float speed, Vector2 direction) : 
+        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
             base(frameCount, animationFPS, starPosition, spriteName)
         {
             this.speed = speed;

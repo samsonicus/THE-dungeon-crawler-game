@@ -9,7 +9,7 @@ namespace THE_dungeon_crawler_game
 {
     class Projectile : Entity
     {
-        private const float movementSpeed = 100;
+        private const int movementSpeed = 100;
         private Entity owner;
         private int damage;
         /// <summary>
@@ -22,7 +22,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="speed">Speed is set to movementSpeed, which is a constant.</param>
         /// <param name="direction">Direction of projectile</param>
         /// <param name="damage">Sets the damage of the projectile</param>
-        public Projectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, float speed, Vector2 direction, int damage, Entity owner) :
+        public Projectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
             base(frameCount, animationFPS, startPosition, spriteName, speed, direction)
         {
             this.damage = damage;
@@ -35,7 +35,7 @@ namespace THE_dungeon_crawler_game
         {
             if (target is ICombatEntity)
             {
-                LoseHealth(damage);
+                
             }
         }
                                                                                     
@@ -48,7 +48,7 @@ namespace THE_dungeon_crawler_game
 
             if (target is ICombatEntity) 
             {
-                DealDamage();
+                DealDamage(target);
             }
            
 
@@ -64,7 +64,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            position += Direction * (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            position += direction * (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             if (!GameWorld.ScreenSize.Intersects(CollisionBox))
             {
                 GameWorld.RemoveGameObject(this);
@@ -72,7 +72,6 @@ namespace THE_dungeon_crawler_game
 
             
         }
-
 
     }
 
