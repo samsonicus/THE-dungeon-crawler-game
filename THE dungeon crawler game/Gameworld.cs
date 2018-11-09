@@ -29,7 +29,12 @@ namespace THE_dungeon_crawler_game
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         private static GraphicsDeviceManager graphics;
 
-        private Player player;
+        private static Player player;
+        public static Player Player
+        {
+            get { return player; }
+        }
+        
 
         public static Rectangle ScreenSize
         {
