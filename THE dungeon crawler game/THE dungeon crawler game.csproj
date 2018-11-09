@@ -41,7 +41,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Enemy.cs" />
+    <Compile Include="Temp\Enemy - Copy.cs" />
+    <Compile Include="Temp\Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameObject.cs" />
