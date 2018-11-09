@@ -22,8 +22,8 @@ namespace THE_dungeon_crawler_game
         /// <param name="speed">Speed is set to movementSpeed, which is a constant.</param>
         /// <param name="direction">Direction of projectile</param>
         /// <param name="damage">Sets the damage of the projectile</param>
-        public Projectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
-            base(frameCount, animationFPS, startPosition, spriteName, speed, direction)
+        public Projectile(int frameCountWidth, int framecountHeight, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
+            base(frameCountWidth, framecountHeight, animationFPS, startPosition, spriteName, speed, direction)
         {
             this.damage = damage;
             this.owner = owner;

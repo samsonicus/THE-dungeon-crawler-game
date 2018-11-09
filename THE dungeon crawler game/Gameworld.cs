@@ -4,9 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace THE_dungeon_crawler_game
 {
+    public enum PlayerDirection { down,up,right,left}
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -93,11 +95,10 @@ namespace THE_dungeon_crawler_game
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Player john = new Player(4, 5, new Vector2(20, 20), "Player", 10, new Vector2(1, 1));
-            //gameObjects.Add(john);
 
+            //string[] playerSpriteFile = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\TextFiles\PlayerSprites.txt");
 
-            player = new Player(10, new Vector2(10,10), 4, 1, new Vector2(1,1), "Player2");
+            player = new Player(10, new Vector2(0,0), 4,4, 5, new Vector2(1,1),"PlayerAllDirections");
             gameObjects.Add(player);
             // TODO: use this.Content to load your game content here
         }

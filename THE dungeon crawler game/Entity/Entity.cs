@@ -38,8 +38,8 @@ namespace THE_dungeon_crawler_game
         /// <param name="spriteName"></param>
         /// <param name="speed"></param>
         /// <param name="direction"></param>
-        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
-            base(frameCount, animationFPS, starPosition, spriteName)
+        public Entity(int frameCountWidth,int frameCountHeight, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
+            base(frameCountWidth,frameCountHeight, animationFPS, starPosition, spriteName)
         {
             this.speed = speed;
             this.direction = direction;

@@ -14,8 +14,8 @@ namespace THE_dungeon_crawler_game
 
         public int Health { get => health; }
 
-        public Enemy(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
-            base(frameCount, animationFPS, starPosition, spriteName, speed, direction)
+        public Enemy(int frameCountWidth,int frameCountHeight, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
+            base(frameCountWidth, frameCountHeight, animationFPS, starPosition, spriteName, speed, direction)
         {
             this.eDirection = direction;
         }
