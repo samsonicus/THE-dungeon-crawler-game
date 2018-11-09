@@ -7,13 +7,13 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    internal class Entity : GameObject
+    class Entity : GameObject
     {
 
-        private float speed;
-        public float Speed { get => speed;}
+        private int speed;
+        public int Speed { get => speed;}
         public Vector2 direction;
-
+        #region Constructors    
         /// <summary>
         /// Default constructor for Entity, without animation
         /// </summary>
@@ -21,11 +21,12 @@ namespace THE_dungeon_crawler_game
         /// <param name="position"></param>
         /// <param name="speed"></param>
         /// <param name="direction"></param>
-        public Entity(string spriteName, Vector2 position, float speed, Vector2 direction) : base(spriteName, position)
+        public Entity(string spriteName, Vector2 position, int speed, Vector2 direction) : base(spriteName, position)
         {
-            this.speed = speed;
             this.direction = direction;
-
+            this.direction.Normalize();
+            this.speed = speed;
+            
         }
 
         /// <summary>
@@ -37,17 +38,32 @@ namespace THE_dungeon_crawler_game
         /// <param name="spriteName"></param>
         /// <param name="speed"></param>
         /// <param name="direction"></param>
-        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, float speed, Vector2 direction) : 
-        base(frameCount, animationFPS, starPosition, spriteName)
+        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
+            base(frameCount, animationFPS, starPosition, spriteName)
         {
             this.speed = speed;
             this.direction = direction;
 
-        }      
-
-        protected virtual void Die()
-        {
-           
         }
+        #endregion  
+        /// <summary>
+        /// Enables the Entity to have defined game logic.
+        /// </summary>
+        /// <param name="gameTime">Amount of time elapsed since last Update()</param>
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
+
+        virtual protected void Die()
+        {
+
+        }
+
+
+
+
+
     }
 }

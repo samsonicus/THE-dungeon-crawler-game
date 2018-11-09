@@ -41,20 +41,21 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Temp\Enemy - Copy.cs" />
-    <Compile Include="Temp\Enemy.cs" />
-    <Compile Include="Entity.cs" />
+    <Compile Include="AnimatedGameObject.cs" />
+    <Compile Include="Entity\Enemy.cs" />
+    <Compile Include="Entity\Entity.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Gameworld.cs" />
     <Compile Include="Interface\ICollidable.cs" />
-    <Compile Include="ICombatEntity.cs" />
-    <Compile Include="ObstacleTile.cs" />
+    <Compile Include="Interface\ICombatEntity.cs" />
+    <Compile Include="Tiles\ObstacleTile.cs" />
+    <Compile Include="Entity\Player.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Projectile.cs" />
+    <Compile Include="Entity\Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
-    <Compile Include="Tiles.cs" />
+    <Compile Include="Tiles\Tiles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -68,6 +69,7 @@
     <Content Include="Content\guardbot1.png" />
     <Content Include="Content\hoverbot1sheet.png" />
     <Content Include="Content\Player.png" />
+    <Content Include="Content\Player2.png" />
     <Content Include="Content\rpgcritter.png" />
     <Content Include="Content\Tiles\BlueDoor.png" />
     <Content Include="Content\Tiles\BluePurpleGrid.png" />

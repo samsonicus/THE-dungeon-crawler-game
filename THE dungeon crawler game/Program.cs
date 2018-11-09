@@ -15,7 +15,10 @@ namespace THE_dungeon_crawler_game
         static void Main()
         {
             using (var game = new GameWorld())
+            {
                 game.Run();
+            }
+                
         }
     }
 #endif
