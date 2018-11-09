@@ -127,5 +127,10 @@ namespace THE_dungeon_crawler_game
         {
             Health -= lifeLost;
         }
+
+        protected override void Die()
+        {
+            GameWorld.RemoveGameObject(this);
+        }
     }
 }
