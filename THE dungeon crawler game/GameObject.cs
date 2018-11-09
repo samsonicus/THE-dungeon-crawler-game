@@ -23,9 +23,9 @@ namespace THE_dungeon_crawler_game
         private Vector2 zero;
         private string spriteName;
         private float baseAnimationFPS;
-        Rectangle[] animationRectangles;
+        protected Rectangle[] animationRectangles;
         //double timeElapsed = 0;
-        int currentAnimationIndex = 0;
+        protected int currentAnimationIndex = 0;
         
 
         #region collision
@@ -33,29 +33,16 @@ namespace THE_dungeon_crawler_game
         /// <summary>
         /// CollisionBox for the Gameobject. Height and Width are based on the height and width of the sprite used. X and Y coordinates are based on the height and width of the sprite aswell.
         /// </summary>
-        public virtual Rectangle CollisionBox
-        {
-            get
-            {
-                return new Rectangle((int)(position.X - sprite.Width * 0.5), (int)(position.Y - sprite.Height * 0.5), sprite.Width, sprite.Height);
-            }
-            
-        }
+      
 
         /// <summary>
         /// IsColliding checks wether a GameObject is colliding with another GameObject (here otherObject) 
         /// </summary>
         /// <param name="otherObject">The object that is tested agaisnt</param>
         /// <returns>If the objects are colliding, return true, else return felse.</returns>
-        public bool IsColliding(GameObject otherObject)
-        {
-            return CollisionBox.Intersects(otherObject.CollisionBox);
-        }
+       
 
-        public virtual void DoCollision(GameObject gameObject)
-        {
-
-        }
+        
 
         #endregion
 

@@ -31,7 +31,7 @@ namespace THE_dungeon_crawler_game
 
         }
 
-        public override Rectangle CollisionBox
+        public Rectangle CollisionBox
         {
             get
             {

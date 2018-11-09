@@ -7,11 +7,12 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    class Projectile : Entity
+    class Projectile : Entity, ICollidable
     {
         private const int movementSpeed = 100;
         private Entity owner;
         private int damage;
+
         /// <summary>
         /// Default constructor for projectile.
         /// </summary>
@@ -28,7 +29,7 @@ namespace THE_dungeon_crawler_game
             this.damage = damage;
             this.owner = owner;
             speed = movementSpeed;
-            this.direction.Normalize(); //normalizes the path of the projectile
+            this.eDirection.Normalize(); //normalizes the path of the projectile
         }
 
         private void DealDamage(GameObject target)
@@ -38,25 +39,7 @@ namespace THE_dungeon_crawler_game
                 
             }
         }
-                                                                                    
-        public override void DoCollision(GameObject target)
-        {
-            if (target.Equals(owner))
-            {
-                return;
-            }
 
-            if (target is ICombatEntity) 
-            {
-                DealDamage(target);
-            }
-           
-
-            if (!GameWorld.ScreenSize.Intersects(CollisionBox))
-            {
-                GameWorld.RemoveGameObject(this);
-            }
-        }
 
         /// <summary>
         /// Update function that removes the bullet if it hits a wall. 
@@ -64,13 +47,35 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            position += direction * (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            position += eDirection * (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             if (!GameWorld.ScreenSize.Intersects(CollisionBox))
             {
                 GameWorld.RemoveGameObject(this);
             }
 
-            
+        }
+        public bool IsColliding(ICollidable otherCollidable)
+        {
+
+            return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
+
+        }
+
+        public void DoCollision(ICollidable otherCollidable)
+        {
+            if (otherCollidable is Enemy || otherCollidable is ObstacleTile || otherCollidable is Player)
+            {
+                GameWorld.RemoveGameObject(this);
+            }
+        }
+
+        public Rectangle CollisionBox
+        {
+            get
+            {
+                return new Rectangle((int)position.X, (int)position.Y, animationRectangles[currentAnimationIndex].Width, 
+                    animationRectangles[currentAnimationIndex].Height);
+            }
         }
 
     }

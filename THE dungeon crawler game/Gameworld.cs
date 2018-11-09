@@ -14,7 +14,7 @@ namespace THE_dungeon_crawler_game
     {
 
         public static float updateSpeed = 1;
-
+        private Texture2D collisionTexture;
         private static ContentManager contentManager;
         public static ContentManager ContentManager
         {
@@ -96,9 +96,12 @@ namespace THE_dungeon_crawler_game
             //Player john = new Player(4, 5, new Vector2(20, 20), "Player", 10, new Vector2(1, 1));
             //gameObjects.Add(john);
 
-
-            player = new Player(10, new Vector2(10,10), 4, 1, new Vector2(1,1), "Player2");
+            Texture2D bulletSprite = Content.Load<Texture2D>("bullet1");
+            collisionTexture = Content.Load<Texture2D>("CollisionTexture");
+            player = new Player(10, new Vector2(10,10), 4, 1, new Vector2(100,100), "Player2");
             gameObjects.Add(player);
+            Projectile projectile= new Projectile(3, 3, new Vector2(50, 50), "bullet1", 5, new Vector2(10, 10), 10, null);
+            gameObjects.Add(projectile);
             // TODO: use this.Content to load your game content here
         }
 
@@ -118,6 +121,8 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+            base.Update(gameTime);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -127,10 +132,39 @@ namespace THE_dungeon_crawler_game
                 foreach (GameObject go in gameObjects)
                 {
                     go.Update(gameTime);
+                    if (go is ICollidable)
+                    {
+                        ICollidable collidable = (ICollidable)go;
+                        foreach (ICollidable other in gameObjects)
+                        {
+                            if (other is ICollidable)
+                            {
+                                if (collidable != other && collidable.IsColliding(other))
+                                {
+                                   collidable.DoCollision(other);
+                                }
+                            }
+
+
+                        }
+                    }
+                   
+                    
                 }
             }
 
-            base.Update(gameTime);
+            
+
+            foreach (GameObject go in toBeRemoved)
+            {
+                gameObjects.Remove(go);
+            }
+            toBeRemoved.Clear();
+
+            gameObjects.AddRange(toBeAdded);
+            toBeAdded.Clear();
+
+
         }
 
 
@@ -148,11 +182,40 @@ namespace THE_dungeon_crawler_game
             foreach (GameObject gameObject in gameObjects)
             {
                 gameObject.Draw(spriteBatch);
+
+                if (gameObject is ICollidable) //draws collisionbox if object is ICollidable
+                {
+                    DrawCollisionBox((ICollidable)gameObject);
+                    
+                }
             }
+
+            
+            
+            
+
+
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+        private void DrawCollisionBox(ICollidable go)
+        {
+            Rectangle collisionBox = go.CollisionBox;
+            Rectangle topLine = new Rectangle(collisionBox.X, collisionBox.Y, collisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(collisionBox.X, collisionBox.Y + collisionBox.Height, collisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(collisionBox.X + collisionBox.Width, collisionBox.Y, 1, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.X, collisionBox.Y, 1, collisionBox.Height);
+
+
+
+            spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+        }
+
 
 
     }

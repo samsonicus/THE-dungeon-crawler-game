@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace THE_dungeon_crawler_game
 {
-    class Player : Entity
+    class Player : Entity, ICollidable
     {
         private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);    
         public Vector2 playerDirection
         {
-            get { return direction; }
+            get { return eDirection; }
         }
         private double lastShot = 0;
 
@@ -76,7 +76,7 @@ namespace THE_dungeon_crawler_game
                 lastShot += gameTime.ElapsedGameTime.TotalSeconds;
                 if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 0.3f)
             {
-                GameWorld.AddGameObject(new Projectile(1, 1, position, "Player", 50, direction, 10, new Entity("Player2", position, 1, direction)));
+                GameWorld.AddGameObject(new Projectile(1, 1, position, "Player", 50, eDirection, 10, new Entity("Player2", position, 1, eDirection)));
                 lastShot = 0;
                 }
 
@@ -86,13 +86,31 @@ namespace THE_dungeon_crawler_game
 
 
 
-        public override void DoCollision(GameObject otherObject)
+        public void DoCollision(ICollidable otherCollidable)
         {
-            if (otherObject is Projectile || otherObject is Enemy)
+            if (otherCollidable is Projectile || otherCollidable is Enemy)
             {
                 health--;
             }
         }
 
+        public bool IsColliding(ICollidable otherCollidable)
+        {
+            return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
+        }
+
+       
+
+        public Rectangle CollisionBox
+        {
+            get
+            {
+                return new Rectangle((int)position.X, (int)position.Y, animationRectangles[currentAnimationIndex].Width, animationRectangles[currentAnimationIndex].Height);
+                
+                //return new Rectangle((int)(position.X - sprite.Width - animationRectangles[currentAnimationIndex].Width * 0.5),
+                  //  (int)(position.Y - sprite.Height - animationRectangles[currentAnimationIndex].Height * 0.5),
+                    //animationRectangles[currentAnimationIndex].Width, animationRectangles[currentAnimationIndex].Height);
+            }
+        }
     }
 }
