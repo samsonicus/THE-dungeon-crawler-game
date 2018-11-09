@@ -12,7 +12,7 @@ namespace THE_dungeon_crawler_game
     {
         private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
-        private Vector2 pDirection = new Vector2(0, 0);    
+        private Vector2 pDirection = new Vector2(0, 0);
         public Vector2 playerDirection
         {
             get { return eDirection; }
@@ -34,7 +34,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">The amount of frames needed for the animation</param>
         /// <param name="startPosition">The starting position for the player ovject</param>
         /// <param name="spriteName">the name of the sprite used for the player</param>
-        public Player(int moveSpeed, Vector2 pDirection, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCount,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
+        public Player(int moveSpeed, Vector2 pDirection, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCount, animationFPS, startPosition, spriteName, moveSpeed, pDirection)
         {
             health = 100;
             moveSpeed = playerSpeed;
@@ -42,6 +42,8 @@ namespace THE_dungeon_crawler_game
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+            #region movement
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 position.X -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
@@ -68,20 +70,22 @@ namespace THE_dungeon_crawler_game
             {
                 rotation -= (float)(rotationSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
             }
-
+            #endregion
 
             pDirection = new Vector2((float)Math.Cos(rotation - MathHelper.Pi * 0.5f), (float)Math.Sin(rotation - MathHelper.Pi * 0.5f));
             //position += direction * (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
 
-                lastShot += gameTime.ElapsedGameTime.TotalSeconds;
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 0.3f)
+            lastShot += gameTime.ElapsedGameTime.TotalSeconds;
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && lastShot > 0.3f)
             {
-                GameWorld.AddGameObject(new Projectile(1, 1, position, "Player", 50, eDirection, 10, new Entity("Player2", position, 1, eDirection)));
+                Point currentMousePosition = Mouse.GetState().Position;
+                Vector2 mouseDirection = new Vector2(currentMousePosition.X - position.X, currentMousePosition.Y - position.Y);
+                GameWorld.AddGameObject(new SinProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
+                GameWorld.AddGameObject(new CosProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
                 lastShot = 0;
-                }
+                
+            }
 
-
-            base.Update(gameTime);
         }
 
 
@@ -99,17 +103,17 @@ namespace THE_dungeon_crawler_game
             return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
         }
 
-       
+
 
         public Rectangle CollisionBox
         {
             get
             {
                 return new Rectangle((int)position.X, (int)position.Y, animationRectangles[currentAnimationIndex].Width, animationRectangles[currentAnimationIndex].Height);
-                
+
                 //return new Rectangle((int)(position.X - sprite.Width - animationRectangles[currentAnimationIndex].Width * 0.5),
-                  //  (int)(position.Y - sprite.Height - animationRectangles[currentAnimationIndex].Height * 0.5),
-                    //animationRectangles[currentAnimationIndex].Width, animationRectangles[currentAnimationIndex].Height);
+                //  (int)(position.Y - sprite.Height - animationRectangles[currentAnimationIndex].Height * 0.5),
+                //animationRectangles[currentAnimationIndex].Width, animationRectangles[currentAnimationIndex].Height);
             }
         }
     }

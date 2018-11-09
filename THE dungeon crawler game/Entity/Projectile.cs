@@ -9,7 +9,7 @@ namespace THE_dungeon_crawler_game
 {
     class Projectile : Entity, ICollidable
     {
-        private const int movementSpeed = 100;
+        
         private Entity owner;
         private int damage;
 
@@ -20,7 +20,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">How often should the animation be played</param>
         /// <param name="startPosition">Starting position of the projectile</param>
         /// <param name="spriteName">Name of sprite</param>
-        /// <param name="speed">Speed is set to movementSpeed, which is a constant.</param>
+        /// <param name="speed">Speed is....speed ;D </param>
         /// <param name="direction">Direction of projectile</param>
         /// <param name="damage">Sets the damage of the projectile</param>
         public Projectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
@@ -28,7 +28,6 @@ namespace THE_dungeon_crawler_game
         {
             this.damage = damage;
             this.owner = owner;
-            speed = movementSpeed;
             this.eDirection.Normalize(); //normalizes the path of the projectile
         }
 
@@ -47,7 +46,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            position += eDirection * (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            
             if (!GameWorld.ScreenSize.Intersects(CollisionBox))
             {
                 GameWorld.RemoveGameObject(this);
@@ -63,7 +62,7 @@ namespace THE_dungeon_crawler_game
 
         public void DoCollision(ICollidable otherCollidable)
         {
-            if (otherCollidable is Enemy || otherCollidable is ObstacleTile || otherCollidable is Player)
+            if (otherCollidable is Enemy || otherCollidable is ObstacleTile)
             {
                 GameWorld.RemoveGameObject(this);
             }

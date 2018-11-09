@@ -80,6 +80,7 @@ namespace THE_dungeon_crawler_game
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            this.IsMouseVisible = true;
             contentManager = Content;
             gameObjects = new List<GameObject>();
             base.Initialize();  
@@ -96,12 +97,13 @@ namespace THE_dungeon_crawler_game
             //Player john = new Player(4, 5, new Vector2(20, 20), "Player", 10, new Vector2(1, 1));
             //gameObjects.Add(john);
 
+            
+
             Texture2D bulletSprite = Content.Load<Texture2D>("bullet1");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             player = new Player(10, new Vector2(10,10), 4, 1, new Vector2(100,100), "Player2");
             gameObjects.Add(player);
-            Projectile projectile= new Projectile(3, 3, new Vector2(50, 50), "bullet1", 5, new Vector2(10, 10), 10, null);
-            gameObjects.Add(projectile);
+           
             // TODO: use this.Content to load your game content here
         }
 
