@@ -7,12 +7,13 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    public enum faceing {North,East,South,West}
+    public enum Faceing {North,East,South,West}
+
     public class Enemy : Entity, ICombatEntity
     {
         protected Player player;
         protected float lastAttack;
-        protected faceing faceing;
+        protected Faceing faceing = Faceing.North;
         protected int health;
         protected float attackRange;
         protected int attackWidth;
@@ -112,19 +113,19 @@ namespace THE_dungeon_crawler_game
             direction.Normalize();
             if(direction.Y < -0.5f)
             {
-                faceing = faceing.North;
+                faceing = Faceing.North;
             }
             else if(direction.X > 0.5f)
             {
-                faceing = faceing.East;
+                faceing = Faceing.East;
             }
             else if(direction.Y > 0.5f)
             {
-                faceing = faceing.South;
+                faceing = Faceing.South;
             }
             else
             {
-                faceing = faceing.West;
+                faceing = Faceing.West;
             }
         }
 
@@ -153,22 +154,24 @@ namespace THE_dungeon_crawler_game
         /// </summary>
         public virtual void Attack()
         {
-            //TODO
-            Rectangle attackBox = CollisionBox;
+            
+            Rectangle attackBox;
             switch (faceing)
             {
-                case faceing.North:
+                case Faceing.North:
+                    attackBox = new Rectangle((int)(position.X + 16 - (attackWidth * 0.5f)), (int)(position.Y - attackRange), attackWidth, (int)attackRange);
                     break;
-                case faceing.East:
+                case Faceing.East:
                     attackBox = new Rectangle((int)(position.X + 32), (int)(position.Y + 16 - (attackWidth * 0.5f)), (int)attackRange, attackWidth);
                     break;
-                case faceing.South:
+                case Faceing.South:
+                    attackBox = new Rectangle((int)(position.X + 16 - (attackWidth * 0.5f)), (int)(position.Y + 32), attackWidth, (int)attackRange);
                     break;
-                case faceing.West:
+                case Faceing.West:
                     attackBox = new Rectangle((int)(position.X - attackRange),(int)(position.Y + 16 - (attackWidth * 0.5f)), (int)attackRange, attackWidth);
                     break;
                 default:
-                    break;
+                    return;                    
             }
             if (attackBox.Intersects(player.CollisionBox))
             {

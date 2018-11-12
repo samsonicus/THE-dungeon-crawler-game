@@ -13,7 +13,7 @@ namespace THE_dungeon_crawler_game
         private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);    
-        public Vector2 playerDirection
+        public Vector2 PlayerDirection
         {
             get { return direction; }
         }
