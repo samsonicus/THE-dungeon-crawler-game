@@ -11,7 +11,7 @@ namespace THE_dungeon_crawler_game
     {
 
         protected int speed;
-        public int Speed { get => speed;}
+        public int Speed { get => speed; set => speed = value; }    
         public Vector2 eDirection;
         #region Constructors    
         /// <summary>
