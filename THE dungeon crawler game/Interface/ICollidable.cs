@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
-    interface ICollidable
+    public interface ICollidable
     {
         Rectangle CollisionBox { get; }
         bool IsColliding(ICollidable otherCollidable);

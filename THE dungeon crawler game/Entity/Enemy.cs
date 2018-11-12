@@ -118,18 +118,18 @@ namespace THE_dungeon_crawler_game
         /// <param name="playerPos">The position of the player the Enemy will look at.</param>
         protected void LookAtPlayer(Vector2 playerPos)
         {
-            direction = playerPos - position;
+            eDirection = playerPos - position;
 
-            direction.Normalize();
-            if(direction.Y < -0.5f)
+            eDirection.Normalize();
+            if(eDirection.Y < -0.5f)
             {
                 faceing = Faceing.North;
             }
-            else if(direction.X > 0.5f)
+            else if(eDirection.X > 0.5f)
             {
                 faceing = Faceing.East;
             }
-            else if(direction.Y > 0.5f)
+            else if(eDirection.Y > 0.5f)
             {
                 faceing = Faceing.South;
             }
@@ -156,7 +156,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime">GameTime object.</param>
         protected void Move(GameTime gameTime)
         {
-            position += direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            position += eDirection * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         /// <summary>

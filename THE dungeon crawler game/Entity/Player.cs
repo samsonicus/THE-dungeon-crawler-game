@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace THE_dungeon_crawler_game
 {
-    class Player : Entity, ICollidable
+    public class Player : Entity, ICollidable, ICombatEntity
     {
         private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
@@ -152,6 +152,11 @@ namespace THE_dungeon_crawler_game
         {
             
             spriteBatch.Draw(sprite, position, CurrentAnimationRectangle, Color.White);
+        }
+
+        public void LoseHealth(int lifeLost)
+        {
+            health -= lifeLost;
         }
     }
 }
