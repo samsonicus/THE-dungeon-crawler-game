@@ -14,7 +14,7 @@ namespace THE_dungeon_crawler_game
     /// ApplyPowerUp should modify the player's statstics based on the powerup.
     /// RemovePowerUp should remove the changes made by the ApplyPowerUp method, so that applying a powerup and removing it results in the same state as before applying.
     /// </summary>
-    abstract class PowerUp : GameObject
+    public abstract class PowerUp : GameObject
     {
 
         public double duration;

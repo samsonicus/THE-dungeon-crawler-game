@@ -9,8 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace THE_dungeon_crawler_game
 {
-    class Player : Entity, ICollidable
+    public class Player : Entity, ICollidable, ICombatEntity
     {
+       
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);
         //This is the list of active powerups.
@@ -54,7 +55,7 @@ namespace THE_dungeon_crawler_game
         public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) :
             base(frameCountWidth, frameCountHeight, animationFPS, startPosition, spriteName, moveSpeed, pDirection)
         {
-            health = 100;
+            health = 10;
         }
 
         public override void Update(GameTime gameTime)
@@ -143,7 +144,7 @@ namespace THE_dungeon_crawler_game
 
         public void DoCollision(ICollidable otherCollidable)
         {
-            if (otherCollidable is Projectile || otherCollidable is Enemy)
+            if (otherCollidable is Enemy)
             {
                 health--;
             }
@@ -174,6 +175,21 @@ namespace THE_dungeon_crawler_game
         {
 
             spriteBatch.Draw(sprite, position, CurrentAnimationRectangle, Color.White);
+        }
+
+        public void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GainHealth(int lifeGained)
+        {
+            this.health += lifeGained;
+        }
+
+        public void LoseHealth(int lifeLost)
+        {
+            this.health -= lifeLost;
         }
     }
 }
