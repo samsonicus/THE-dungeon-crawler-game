@@ -24,7 +24,8 @@ namespace THE_dungeon_crawler_game
         private Vector2 zero;
         private string spriteName;
         private float baseAnimationFPS;
-        protected Rectangle[,] animationRectangles;
+        protected Rectangle[,] animationRectanglesSheet;
+        protected Rectangle[] animationRectangles;
         //double timeElapsed = 0;
         protected int currentAnimationIndex = 0;
         
@@ -81,16 +82,37 @@ namespace THE_dungeon_crawler_game
         /// <param name="content">A referance for the ContentManager for loadingresources</param>
         /// <param name="spriteName">The name of the texture used for the GameObject</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
-        public GameObject(int frameCountWidth,int frameCountHeight ,float animationFPS, Vector2 startPosition, string spriteName) : this(spriteName, startPosition)
+        public GameObject(int frameCountWidth, float animationFPS, Vector2 startPosition, string spriteName) : this(spriteName, startPosition)
         {
             position = startPosition;
             this.animationFPS = animationFPS;
-            animationRectangles = new Rectangle[frameCountWidth,frameCountHeight];
+            animationRectangles = new Rectangle[frameCountWidth];
             int goDirection = (int)ePlayerDirection;
 
             for (int i = 0; i < frameCountWidth; i++)
             {
-                animationRectangles[1, i] = new Rectangle((i * sprite.Width / frameCountWidth), (goDirection * sprite.Height / frameCountHeight), (sprite.Width / frameCountWidth), (sprite.Height / frameCountHeight));
+                animationRectanglesSheet[1, i] = new Rectangle((i * sprite.Width / frameCountWidth),0, (sprite.Width / frameCountWidth), sprite.Height);
+            }
+
+        }
+
+        /// <summary>
+        /// The constructor for a GameObject with animations and a spritesheet. 
+        /// </summary>
+        /// <param name="startPosition">The start position for the GameObject</param>
+        /// <param name="content">A referance for the ContentManager for loadingresources</param>
+        /// <param name="spriteName">The name of the texture used for the GameObject</param>
+        /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
+        public GameObject(int frameCountWidth,int frameCountHeight ,float animationFPS, Vector2 startPosition, string spriteName) : this(spriteName, startPosition)
+        {
+            position = startPosition;
+            this.animationFPS = animationFPS;
+            animationRectanglesSheet = new Rectangle[frameCountWidth,frameCountHeight];
+            int goDirection = (int)ePlayerDirection;
+
+            for (int i = 0; i < frameCountWidth; i++)
+            {
+                animationRectanglesSheet[1, i] = new Rectangle((i * sprite.Width / frameCountWidth), (goDirection * sprite.Height / frameCountHeight), (sprite.Width / frameCountWidth), (sprite.Height / frameCountHeight));
             }
 
         }
@@ -99,7 +121,7 @@ namespace THE_dungeon_crawler_game
         timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
         currentAnimationIndex = (int)(timeElapsed * animationFPS);
 
-            if (currentAnimationIndex > animationRectangles.Length-1)
+            if (currentAnimationIndex > animationRectanglesSheet.Length-1)
             {
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
@@ -114,7 +136,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-             spriteBatch.Draw(sprite, position, animationRectangles[1,currentAnimationIndex], Color.White);
+             spriteBatch.Draw(sprite, position, animationRectanglesSheet[1,currentAnimationIndex], Color.White);
 
         }
     }
