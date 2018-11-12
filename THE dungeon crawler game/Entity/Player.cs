@@ -46,22 +46,22 @@ namespace THE_dungeon_crawler_game
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 position.X -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = PlayerDirection.left;
+                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.left;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 position.X += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = PlayerDirection.right;
+                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.right;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 position.Y -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = PlayerDirection.up;
+                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.up;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 position.Y += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = PlayerDirection.down;
+                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.down;
             }
 
 
