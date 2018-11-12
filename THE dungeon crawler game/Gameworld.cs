@@ -30,6 +30,8 @@ namespace THE_dungeon_crawler_game
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         private static GraphicsDeviceManager graphics;
+        private static Vector3 cameraPosition;
+
 
         private static Player player;
         public static Player Player
@@ -46,6 +48,13 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        #region camera
+        public static void SetCameraPosition(int x,int y)
+        {
+            cameraPosition = new Vector3(x, y, 0);
+        }
+        #endregion
+
         #region Add/Remove methods
 
 
@@ -56,6 +65,15 @@ namespace THE_dungeon_crawler_game
         public static void AddGameObject(GameObject go)
         {
             toBeAdded.Add(go);
+        }
+
+        /// <summary>
+        /// Adds multiple gameObjects to the toBeAdded list
+        /// </summary>
+        /// <param name="gameObjects">List of gameObjects to be added</param>
+        public static void AddMultipleGameObjects(List<GameObject> gameObjects)
+        {
+            toBeAdded.AddRange(gameObjects);
         }
 
         /// <summary>
@@ -76,6 +94,10 @@ namespace THE_dungeon_crawler_game
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 576;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -150,7 +172,7 @@ namespace THE_dungeon_crawler_game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront,null,null,null,null,null,Matrix.CreateTranslation(cameraPosition));
             foreach (GameObject gameObject in gameObjects)
             {
                 gameObject.Draw(spriteBatch);

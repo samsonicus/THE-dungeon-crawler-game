@@ -43,6 +43,7 @@ namespace THE_dungeon_crawler_game
 
         public override void Update(GameTime gameTime)
         {
+            /*
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 position.X -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
@@ -63,7 +64,7 @@ namespace THE_dungeon_crawler_game
                 position.Y += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
                 ePlayerDirection = PlayerDirection.down;
             }
-
+            */
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {

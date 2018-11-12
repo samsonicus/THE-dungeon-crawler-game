@@ -121,7 +121,7 @@ namespace THE_dungeon_crawler_game
         timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
         currentAnimationIndex = (int)(timeElapsed * animationFPS);
 
-            if (currentAnimationIndex > animationRectanglesSheet.Length-1)
+            if (currentAnimationIndex > animationRectanglesSheet.GetLength(1)-1)
             {
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
