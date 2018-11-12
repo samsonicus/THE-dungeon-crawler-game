@@ -7,11 +7,12 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    class Projectile : Entity
+    class Projectile : Entity, ICollidable
     {
-        private const int movementSpeed = 100;
+        
         private Entity owner;
         private int damage;
+
         /// <summary>
         /// Default constructor for projectile.
         /// </summary>
@@ -19,7 +20,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">How often should the animation be played</param>
         /// <param name="startPosition">Starting position of the projectile</param>
         /// <param name="spriteName">Name of sprite</param>
-        /// <param name="speed">Speed is set to movementSpeed, which is a constant.</param>
+        /// <param name="speed">Speed is....speed ;D </param>
         /// <param name="direction">Direction of projectile</param>
         /// <param name="damage">Sets the damage of the projectile</param>
         public Projectile(int frameCountWidth, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
@@ -27,8 +28,8 @@ namespace THE_dungeon_crawler_game
         {
             this.damage = damage;
             this.owner = owner;
-            speed = movementSpeed;
-            this.direction.Normalize(); //normalizes the path of the projectile
+            this.speed = speed;
+            this.eDirection.Normalize(); //normalizes the path of the projectile
         }
 
         /// <summary>
@@ -46,8 +47,7 @@ namespace THE_dungeon_crawler_game
         {
             this.damage = damage;
             this.owner = owner;
-            speed = movementSpeed;
-            this.direction.Normalize(); //normalizes the path of the projectile
+            this.eDirection.Normalize(); //normalizes the path of the projectile
         }
 
         private void DealDamage(GameObject target)
@@ -57,25 +57,7 @@ namespace THE_dungeon_crawler_game
                 
             }
         }
-                                                                                    
-        public override void DoCollision(GameObject target)
-        {
-            if (target.Equals(owner))
-            {
-                return;
-            }
 
-            if (target is ICombatEntity) 
-            {
-                DealDamage(target);
-            }
-           
-
-            if (!GameWorld.ScreenSize.Intersects(CollisionBox))
-            {
-                GameWorld.RemoveGameObject(this);
-            }
-        }
 
         /// <summary>
         /// Update function that removes the bullet if it hits a wall. 
@@ -83,13 +65,35 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            position += direction * (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+
             if (!GameWorld.ScreenSize.Intersects(CollisionBox))
             {
                 GameWorld.RemoveGameObject(this);
             }
 
-            
+        }
+        public bool IsColliding(ICollidable otherCollidable)
+        {
+
+            return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
+
+        }
+
+        public void DoCollision(ICollidable otherCollidable)
+        {
+            if (otherCollidable is Enemy || otherCollidable is ObstacleTile)
+            {
+                GameWorld.RemoveGameObject(this);
+            }
+        }
+
+        public Rectangle CollisionBox
+        {
+            get
+            {
+                return new Rectangle((int)position.X, (int)position.Y, animationRectanglesSheet[0, currentAnimationIndex].Width, 
+                    animationRectanglesSheet[0, currentAnimationIndex].Height);
+            }
         }
 
     }

@@ -21,45 +21,16 @@ namespace THE_dungeon_crawler_game
         
         protected double timeElapsed = 0;
 
-        private Vector2 zero;
+        
         private string spriteName;
         private float baseAnimationFPS;
         protected Rectangle[,] animationRectanglesSheet;
-        protected Rectangle[] animationRectangles;
+        
         //double timeElapsed = 0;
         protected int currentAnimationIndex = 0;
         
 
-        #region collision
-       
-        /// <summary>
-        /// CollisionBox for the Gameobject. Height and Width are based on the height and width of the sprite used. X and Y coordinates are based on the height and width of the sprite aswell.
-        /// </summary>
-        public virtual Rectangle CollisionBox
-        {
-            get
-            {
-                return new Rectangle((int)(position.X - sprite.Width * 0.5), (int)(position.Y - sprite.Height * 0.5), sprite.Width, sprite.Height);
-            }
-            
-        }
-
-        /// <summary>
-        /// IsColliding checks wether a GameObject is colliding with another GameObject (here otherObject) 
-        /// </summary>
-        /// <param name="otherObject">The object that is tested agaisnt</param>
-        /// <returns>If the objects are colliding, return true, else return felse.</returns>
-        public bool IsColliding(GameObject otherObject)
-        {
-            return CollisionBox.Intersects(otherObject.CollisionBox);
-        }
-
-        public virtual void DoCollision(GameObject gameObject)
-        {
-
-        }
-
-        #endregion
+ 
 
         /// <summary>
         /// The default constructor for a gameobject with name and position.
@@ -86,12 +57,12 @@ namespace THE_dungeon_crawler_game
         {
             position = startPosition;
             this.animationFPS = animationFPS;
-            animationRectangles = new Rectangle[frameCountWidth];
+            animationRectanglesSheet = new Rectangle[1, frameCountWidth];
             int goDirection = (int)ePlayerDirection;
 
             for (int i = 0; i < frameCountWidth; i++)
             {
-                animationRectanglesSheet[1, i] = new Rectangle((i * sprite.Width / frameCountWidth),0, (sprite.Width / frameCountWidth), sprite.Height);
+                animationRectanglesSheet[0, i] = new Rectangle((i * sprite.Width / frameCountWidth),0, (sprite.Width / frameCountWidth), sprite.Height);
             }
 
         }
@@ -109,10 +80,16 @@ namespace THE_dungeon_crawler_game
             this.animationFPS = animationFPS;
             animationRectanglesSheet = new Rectangle[frameCountWidth,frameCountHeight];
             int goDirection = (int)ePlayerDirection;
+            int width = sprite.Width / frameCountWidth;
+            int height = sprite.Height / frameCountHeight;
 
-            for (int i = 0; i < frameCountWidth; i++)
+
+            for (int i = 0; i < frameCountHeight; i++)
             {
-                animationRectanglesSheet[1, i] = new Rectangle((i * sprite.Width / frameCountWidth), (goDirection * sprite.Height / frameCountHeight), (sprite.Width / frameCountWidth), (sprite.Height / frameCountHeight));
+                for (int j = 0; j < frameCountWidth; j++)
+                {
+                    animationRectanglesSheet[i, j] = new Rectangle(j * width, i * height, width, height);
+                }
             }
 
         }
@@ -121,7 +98,7 @@ namespace THE_dungeon_crawler_game
         timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
         currentAnimationIndex = (int)(timeElapsed * animationFPS);
 
-            if (currentAnimationIndex > animationRectanglesSheet.Length-1)
+            if (currentAnimationIndex > 3)
             {
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
@@ -136,7 +113,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-             spriteBatch.Draw(sprite, position, animationRectanglesSheet[1,currentAnimationIndex], Color.White);
+             spriteBatch.Draw(sprite, position, animationRectanglesSheet[0,currentAnimationIndex], Color.White);
 
         }
     }

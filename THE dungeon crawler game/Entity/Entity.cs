@@ -10,9 +10,9 @@ namespace THE_dungeon_crawler_game
     public class Entity : GameObject
     {
 
-        private int speed;
+        protected int speed;
         public int Speed { get => speed;}
-        public Vector2 direction;
+        public Vector2 eDirection;
         #region Constructors    
         /// <summary>
         /// Default constructor for Entity, without animation
@@ -23,8 +23,8 @@ namespace THE_dungeon_crawler_game
         /// <param name="direction"></param>
         public Entity(string spriteName, Vector2 position, int speed, Vector2 direction) : base(spriteName, position)
         {
-            this.direction = direction;
-            this.direction.Normalize();
+            this.eDirection = direction;
+            this.eDirection.Normalize();
             this.speed = speed;
             
         }
@@ -43,7 +43,7 @@ namespace THE_dungeon_crawler_game
             base(frameCountWidth, animationFPS, starPosition, spriteName)
         {
             this.speed = speed;
-            this.direction = direction;
+            this.eDirection = direction;
 
         }
 
@@ -60,7 +60,7 @@ namespace THE_dungeon_crawler_game
             base(frameCountWidth,frameCountHeight, animationFPS, starPosition, spriteName)
         {
             this.speed = speed;
-            this.direction = direction;
+            this.eDirection = direction;
 
         }
         #endregion  
@@ -79,9 +79,7 @@ namespace THE_dungeon_crawler_game
 
         }
 
-
-
-
+        
 
     }
 }
