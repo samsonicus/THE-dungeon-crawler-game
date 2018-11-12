@@ -101,7 +101,7 @@ namespace THE_dungeon_crawler_game
 
             Texture2D bulletSprite = Content.Load<Texture2D>("bullet1");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            player = new Player(10, new Vector2(10,10), 4, 1, new Vector2(100,100), "Player2");
+            player = new Player(10, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), "PlayerAllDirections");
             gameObjects.Add(player);
            
             // TODO: use this.Content to load your game content here

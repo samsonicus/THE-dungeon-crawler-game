@@ -28,8 +28,8 @@ namespace THE_dungeon_crawler_game
         {
             this.damage = damage;
             this.owner = owner;
-            speed = movementSpeed;
-            this.direction.Normalize(); //normalizes the path of the projectile
+            this.speed = speed;
+            this.eDirection.Normalize(); //normalizes the path of the projectile
         }
 
         /// <summary>
@@ -91,8 +91,8 @@ namespace THE_dungeon_crawler_game
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y, animationRectangles[currentAnimationIndex].Width, 
-                    animationRectangles[currentAnimationIndex].Height);
+                return new Rectangle((int)position.X, (int)position.Y, animationRectanglesSheet[0, currentAnimationIndex].Width, 
+                    animationRectanglesSheet[0, currentAnimationIndex].Height);
             }
         }
 

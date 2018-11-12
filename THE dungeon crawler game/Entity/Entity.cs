@@ -10,7 +10,7 @@ namespace THE_dungeon_crawler_game
     class Entity : GameObject
     {
 
-        private int speed;
+        protected int speed;
         public int Speed { get => speed;}
         public Vector2 eDirection;
         #region Constructors    
@@ -43,7 +43,7 @@ namespace THE_dungeon_crawler_game
             base(frameCountWidth, animationFPS, starPosition, spriteName)
         {
             this.speed = speed;
-            this.direction = direction;
+            this.eDirection = direction;
 
         }
 

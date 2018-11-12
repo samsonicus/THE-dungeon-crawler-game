@@ -37,7 +37,8 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">The amount of frames needed for the animation</param>
         /// <param name="startPosition">The starting position for the player ovject</param>
         /// <param name="spriteName">the name of the sprite used for the player</param>
-        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCountWidth, frameCountHeight,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
+        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) : 
+            base(frameCountWidth, frameCountHeight,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
         {
             health = 100;
             moveSpeed = playerSpeed;
@@ -121,18 +122,26 @@ namespace THE_dungeon_crawler_game
             return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
         }
 
-
+        public Rectangle CurrentAnimationRectangle { get => animationRectanglesSheet[(int)ePlayerDirection, currentAnimationIndex]; }
 
         public Rectangle CollisionBox
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y, animationRectangles[currentAnimationIndex].Width, animationRectangles[currentAnimationIndex].Height);
+                return new Rectangle((int)position.X, (int)position.Y, CurrentAnimationRectangle.Width, CurrentAnimationRectangle.Height);
 
                 //return new Rectangle((int)(position.X - sprite.Width - animationRectangles[currentAnimationIndex].Width * 0.5),
                 //  (int)(position.Y - sprite.Height - animationRectangles[currentAnimationIndex].Height * 0.5),
                 //animationRectangles[currentAnimationIndex].Width, animationRectangles[currentAnimationIndex].Height);
             }
+        }
+
+        
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            
+            spriteBatch.Draw(sprite, position, CurrentAnimationRectangle, Color.White);
         }
     }
 }
