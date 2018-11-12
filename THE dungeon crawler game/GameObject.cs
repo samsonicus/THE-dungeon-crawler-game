@@ -94,11 +94,11 @@ namespace THE_dungeon_crawler_game
 
         }
 
-        public virtual void Update(GameTime gameTime) { 
-        timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
-        currentAnimationIndex = (int)(timeElapsed * animationFPS);
+        public virtual void Update(GameTime gameTime) {
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimationIndex = (int)(timeElapsed * animationFPS);
 
-            if (currentAnimationIndex > 3)
+            if (currentAnimationIndex > animationRectanglesSheet.GetLength(0)-1)
             {
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
