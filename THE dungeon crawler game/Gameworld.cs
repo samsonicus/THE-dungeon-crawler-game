@@ -101,16 +101,23 @@ namespace THE_dungeon_crawler_game
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            
-
-            Texture2D bulletSprite = Content.Load<Texture2D>("bullet1");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            player = new Player(50, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), "PlayerAllDirections");
+            player = new Player(100, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), "PlayerAllDirections");
             gameObjects.Add(player);
-            gameObjects.Add(new MovementSpeedPowerup(new Vector2(50, 50), 50, 2));
-            
-           
+            gameObjects.Add(new HeartContainer());
+
+
+            var rnd = new Random();
+            var w = GameWorld.ScreenSize.Width - 32;
+            var h = GameWorld.ScreenSize.Height - 32;
+            for (int i = 0; i < 10; i++)
+            {
+                gameObjects.Add(new MovementSpeedPowerup(new Vector2((float)rnd.NextDouble() * w, (float)rnd.NextDouble() * h), 100, 2));
+
+
+            }
+
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -144,13 +151,13 @@ namespace THE_dungeon_crawler_game
                     if (go is ICollidable)
                     {
                         ICollidable collidable = (ICollidable)go;
-                        foreach (ICollidable other in gameObjects)
+                        foreach (GameObject other in gameObjects)
                         {
                             if (other is ICollidable)
                             {
-                                if (collidable != other && collidable.IsColliding(other))
+                                if (collidable != other && collidable.IsColliding((ICollidable)other))
                                 {
-                                   collidable.DoCollision(other);
+                                   collidable.DoCollision((ICollidable)other);
                                 }
                             }
 
