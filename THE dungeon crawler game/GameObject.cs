@@ -31,7 +31,7 @@ namespace THE_dungeon_crawler_game
         
 
  
-
+        
         /// <summary>
         /// The default constructor for a gameobject with name and position.
         /// </summary>
@@ -43,6 +43,15 @@ namespace THE_dungeon_crawler_game
             this.position = position;
             this.spriteName = spriteName;
             sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+            
+            this.animationFPS = 1;
+            animationRectanglesSheet = new Rectangle[1, 1];
+            int goDirection = (int)ePlayerDirection;
+
+          
+            
+            animationRectanglesSheet[0, 0] = new Rectangle(0,0,sprite.Width, sprite.Height);
+            
 
         }
 
