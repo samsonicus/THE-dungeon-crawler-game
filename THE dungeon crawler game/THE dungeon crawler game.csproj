@@ -45,6 +45,7 @@
     <Compile Include="Entity\CosProjectile.cs" />
     <Compile Include="Entity\Enemy.cs" />
     <Compile Include="Entity\Entity.cs" />
+    <Compile Include="Entity\PowerUp.cs" />
     <Compile Include="Entity\SimpleProjectile.cs" />
     <Compile Include="Entity\SinProjectile.cs" />
     <Compile Include="GameMap.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Gameworld.cs" />
     <Compile Include="Interface\ICollidable.cs" />
     <Compile Include="Interface\ICombatEntity.cs" />
+    <Compile Include="Entity\MovementSpeedPowerup.cs" />
     <Compile Include="Tiles\ObstacleTile.cs" />
     <Compile Include="Entity\Player.cs" />
     <Compile Include="Program.cs" />
