@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-    class Entity : GameObject
+    public class Entity : GameObject
     {
 
         private int speed;

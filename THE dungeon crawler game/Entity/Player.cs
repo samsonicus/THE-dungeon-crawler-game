@@ -9,12 +9,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace THE_dungeon_crawler_game
 {
-    class Player : Entity
+    public class Player : Entity, ICombatEntity
     {
         private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);    
-        public Vector2 playerDirection
+        public Vector2 PlayerDirection
         {
             get { return direction; }
         }
@@ -103,5 +103,19 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        public void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GainHealth(int lifeGained)
+        {
+            //TODO;
+        }
+
+        public void LoseHealth(int lifeLost)
+        {
+            //TODO;
+        }
     }
 }

@@ -10,8 +10,7 @@ namespace THE_dungeon_crawler_game
     {
         int Health { get;}
         void Attack();
-        void GainHealth();
-        void LoseHealth();
-
+        void GainHealth(int lifeGained);
+        void LoseHealth(int lifeLost);
     }
 }
