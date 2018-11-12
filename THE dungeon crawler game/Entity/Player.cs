@@ -13,9 +13,24 @@ namespace THE_dungeon_crawler_game
     {
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);
+        //This is the list of active powerups.
+        protected List<PowerUp> activePowerups = new List<PowerUp>();
+
         public Vector2 playerDirection
         {
             get { return eDirection; }
+        }
+
+        /// <summary>
+        /// Applies a powerup to the player.
+        /// Adds it to the activePowerUp list, and removes it from the GameWorld so it is no longer rendered.
+        /// </summary>
+        /// <param name="powerup"></param>
+        public void AddPowerUp(PowerUp powerup)
+        {
+            powerup.ApplyPowerup(this);
+            GameWorld.RemoveGameObject((GameObject)powerup);
+            activePowerups.Add(powerup);
         }
 
 
@@ -36,8 +51,8 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">The amount of frames needed for the animation</param>
         /// <param name="startPosition">The starting position for the player ovject</param>
         /// <param name="spriteName">the name of the sprite used for the player</param>
-        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) : 
-            base(frameCountWidth, frameCountHeight,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
+        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) :
+            base(frameCountWidth, frameCountHeight, animationFPS, startPosition, spriteName, moveSpeed, pDirection)
         {
             health = 100;
         }
@@ -88,7 +103,7 @@ namespace THE_dungeon_crawler_game
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && lastShot > 0.2f)
             {
-                
+
                 GameWorld.AddGameObject(new SimpleProjectile(3, 3, position, "bullet1", 200, mouseDirection, 10, this));
                 lastShot = 0;
             }
@@ -96,13 +111,32 @@ namespace THE_dungeon_crawler_game
             if (Mouse.GetState().RightButton == ButtonState.Pressed && lastShot > 0.8f)
             {
 
-                
+
                 GameWorld.AddGameObject(new SinProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
                 GameWorld.AddGameObject(new CosProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
                 lastShot = 0;
-                
+
             }
 
+
+            //Update duration of all active powerups and collect the ones that are expired in a list.
+            //and then remove all the expired ones from the active list.
+            List<PowerUp> removePowerupList = new List<PowerUp>();
+            foreach (PowerUp powerUp in activePowerups)
+            {
+                powerUp.duration -= gameTime.ElapsedGameTime.TotalSeconds;
+                if (powerUp.duration <= 0)
+                {
+                    removePowerupList.Add(powerUp);
+                    powerUp.RemovePowerup(this);
+                }
+
+            }
+
+            foreach (PowerUp powerUp in removePowerupList)
+            {
+                activePowerups.Remove(powerUp);
+            }
         }
 
 
@@ -134,11 +168,11 @@ namespace THE_dungeon_crawler_game
             }
         }
 
-        
+
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            
+
             spriteBatch.Draw(sprite, position, CurrentAnimationRectangle, Color.White);
         }
     }
