@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace THE_dungeon_crawler_game
@@ -36,7 +37,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">The amount of frames needed for the animation</param>
         /// <param name="startPosition">The starting position for the player ovject</param>
         /// <param name="spriteName">the name of the sprite used for the player</param>
-        public Player(int moveSpeed, Vector2 pDirection, int frameCount, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCount, animationFPS, startPosition, spriteName, moveSpeed, pDirection)
+        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCountWidth, frameCountHeight,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
         {
             health = 100;
             moveSpeed = playerSpeed;
@@ -49,18 +50,22 @@ namespace THE_dungeon_crawler_game
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 position.X -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.left;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 position.X += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.right;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 position.Y -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.up;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 position.Y += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.down;
             }
 
 

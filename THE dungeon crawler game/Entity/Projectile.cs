@@ -23,8 +23,27 @@ namespace THE_dungeon_crawler_game
         /// <param name="speed">Speed is....speed ;D </param>
         /// <param name="direction">Direction of projectile</param>
         /// <param name="damage">Sets the damage of the projectile</param>
-        public Projectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
-            base(frameCount, animationFPS, startPosition, spriteName, speed, direction)
+        public Projectile(int frameCountWidth, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
+            base(frameCountWidth, animationFPS, startPosition, spriteName, speed, direction)
+        {
+            this.damage = damage;
+            this.owner = owner;
+            speed = movementSpeed;
+            this.direction.Normalize(); //normalizes the path of the projectile
+        }
+
+        /// <summary>
+        /// Projectile constructor with a spritesheet.
+        /// </summary>
+        /// <param name="frameCount">Sets the framecount</param>
+        /// <param name="animationFPS">How often should the animation be played</param>
+        /// <param name="startPosition">Starting position of the projectile</param>
+        /// <param name="spriteName">Name of sprite</param>
+        /// <param name="speed">Speed is set to movementSpeed, which is a constant.</param>
+        /// <param name="direction">Direction of projectile</param>
+        /// <param name="damage">Sets the damage of the projectile</param>
+        public Projectile(int frameCountWidth, int framecountHeight, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) :
+            base(frameCountWidth, framecountHeight, animationFPS, startPosition, spriteName, speed, direction)
         {
             this.damage = damage;
             this.owner = owner;

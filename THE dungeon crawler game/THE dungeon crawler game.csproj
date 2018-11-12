@@ -73,7 +73,11 @@
     <Content Include="Content\hoverbot1sheet.png" />
     <Content Include="Content\Player.png" />
     <Content Include="Content\Player2.png" />
+    <Content Include="Content\PlayerAllDirections.png" />
     <Content Include="Content\rpgcritter.png" />
+    <Content Include="Content\TextFiles\TextFile1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Tiles\BlueDoor.png" />
     <Content Include="Content\Tiles\BluePurpleGrid.png" />
     <Content Include="Content\Tiles\BlueWall1.png" />
@@ -105,9 +109,9 @@
     <Content Include="Content\Tiles\YellowTallWall.png" />
     <Content Include="Content\treadbot1sheet.png" />
     <Content Include="Icon.ico" />
-    <Content Include="TextFiles\EnemySprites.txt" />
-    <Content Include="TextFiles\PlayerSprites.txt" />
-    <Content Include="TextFiles\TerrainSprites.txt" />
+    <Content Include="Content\TextFiles\EnemySprites.txt" />
+    <Content Include="Content\TextFiles\PlayerSprites.txt" />
+    <Content Include="Content\TextFiles\TerrainSprites.txt" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

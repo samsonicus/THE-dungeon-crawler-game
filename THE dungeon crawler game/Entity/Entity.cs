@@ -29,6 +29,7 @@ namespace THE_dungeon_crawler_game
             
         }
 
+
         /// <summary>
         /// Constructor for entity with animations.
         /// </summary>
@@ -38,8 +39,25 @@ namespace THE_dungeon_crawler_game
         /// <param name="spriteName"></param>
         /// <param name="speed"></param>
         /// <param name="direction"></param>
-        public Entity(int frameCount, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
-            base(frameCount, animationFPS, starPosition, spriteName)
+        public Entity(int frameCountWidth, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) :
+            base(frameCountWidth, animationFPS, starPosition, spriteName)
+        {
+            this.speed = speed;
+            this.direction = direction;
+
+        }
+
+        /// <summary>
+        /// Constructor for entity with animations and a spritesheet.
+        /// </summary>
+        /// <param name="frameCount"></param>
+        /// <param name="animationFPS"></param>
+        /// <param name="starPosition"></param>
+        /// <param name="spriteName"></param>
+        /// <param name="speed"></param>
+        /// <param name="direction"></param>
+        public Entity(int frameCountWidth,int frameCountHeight, float animationFPS, Vector2 starPosition, string spriteName, int speed, Vector2 direction) : 
+            base(frameCountWidth,frameCountHeight, animationFPS, starPosition, spriteName)
         {
             this.speed = speed;
             this.eDirection = direction;
