@@ -86,14 +86,14 @@ namespace THE_dungeon_crawler_game
             Point currentMousePosition = Mouse.GetState().Position;
             Vector2 mouseDirection = new Vector2(currentMousePosition.X - position.X, currentMousePosition.Y - position.Y);
 
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && lastShot > 0.3f)
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && lastShot > 0.2f)
             {
                 
-                GameWorld.AddGameObject(new SimpleProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
+                GameWorld.AddGameObject(new SimpleProjectile(3, 3, position, "bullet1", 200, mouseDirection, 10, this));
                 lastShot = 0;
             }
 
-            if (Mouse.GetState().RightButton == ButtonState.Pressed && lastShot > 0.3f)
+            if (Mouse.GetState().RightButton == ButtonState.Pressed && lastShot > 0.8f)
             {
 
                 
