@@ -98,7 +98,7 @@ namespace THE_dungeon_crawler_game
 
             //string[] playerSpriteFile = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\TextFiles\PlayerSprites.txt");
 
-            player = new Player(10, new Vector2(0,0), 4,4, 5, new Vector2(1,1),"PlayerAllDirections");
+            player = new Player(10, new Vector2(0,0),4,4, 5, new Vector2(1,1),"PlayerAllDirections");
             gameObjects.Add(player);
             // TODO: use this.Content to load your game content here
         }

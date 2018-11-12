@@ -35,7 +35,21 @@ namespace THE_dungeon_crawler_game
         /// <param name="animationFPS">The amount of frames needed for the animation</param>
         /// <param name="startPosition">The starting position for the player ovject</param>
         /// <param name="spriteName">the name of the sprite used for the player</param>
-        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCountWidth, frameCountHeight,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
+        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCountWidth, animationFPS, startPosition, spriteName, moveSpeed, pDirection)
+        {
+            health = 100;
+            moveSpeed = playerSpeed;
+        }
+        /// <summary>
+        /// The player constuctor used for spritesheets
+        /// </summary>
+        /// <param name="speed">Speed of the player</param>
+        /// <param name="direction">The direction the player is moving in</param>
+        /// <param name="frameCount">The frame that the animation is curentley on(?)</param>
+        /// <param name="animationFPS">The amount of frames needed for the animation</param>
+        /// <param name="startPosition">The starting position for the player ovject</param>
+        /// <param name="spriteName">the name of the sprite used for the player</param>
+        public Player(int moveSpeed, Vector2 pDirection, int frameCountWidth, int frameCountHeight, int animationFPS, Vector2 startPosition, string spriteName) : base(frameCountWidth, frameCountHeight, animationFPS, startPosition, spriteName, moveSpeed, pDirection)
         {
             health = 100;
             moveSpeed = playerSpeed;
@@ -89,10 +103,10 @@ namespace THE_dungeon_crawler_game
             base.Update(gameTime);
         }
 
-        //public override void Draw(SpriteBatch spriteBatch)
-        //{
-        //    spriteBatch.Draw(sprite, position, animationRectangles[(int)ePlayerDirection, currentAnimationIndex], Color.White);
-        //}
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(sprite, position, animationRectanglesSheet[1, currentAnimationIndex], Color.White);
+        }
 
 
         public override void DoCollision(GameObject otherObject)

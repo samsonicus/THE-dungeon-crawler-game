@@ -107,12 +107,11 @@ namespace THE_dungeon_crawler_game
         {
             position = startPosition;
             this.animationFPS = animationFPS;
-            animationRectanglesSheet = new Rectangle[frameCountWidth,frameCountHeight];
-            int goDirection = (int)ePlayerDirection;
+            animationRectanglesSheet = new Rectangle[frameCountWidth,frameCountHeight]; 
 
             for (int i = 0; i < frameCountWidth; i++)
             {
-                animationRectanglesSheet[1, i] = new Rectangle((i * sprite.Width / frameCountWidth), (goDirection * sprite.Height / frameCountHeight), (sprite.Width / frameCountWidth), (sprite.Height / frameCountHeight));
+                animationRectanglesSheet[1, i] = new Rectangle((i * sprite.Width / frameCountWidth), ((int)ePlayerDirection * sprite.Height / frameCountHeight), (sprite.Width / frameCountWidth), (sprite.Height / frameCountHeight));
             }
 
         }
@@ -121,11 +120,17 @@ namespace THE_dungeon_crawler_game
         timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
         currentAnimationIndex = (int)(timeElapsed * animationFPS);
 
-            if (currentAnimationIndex > animationRectanglesSheet.Length-1)
+            if (currentAnimationIndex > animationRectanglesSheet.GetLength(1)-1)
             {
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
             }
+            //lav en tilsvarende til animatnionRectangles
+            //if(currentAnimationIndex > animationRectangles.Length - 1)
+            //{
+            //    timeElapsed = 0;
+            //    currentAnimationIndex =0;
+            //}
 
         }
 
@@ -136,8 +141,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-             spriteBatch.Draw(sprite, position, animationRectanglesSheet[1,currentAnimationIndex], Color.White);
-
+         spriteBatch.Draw(sprite, position, animationRectanglesSheet[1,currentAnimationIndex], Color.White);    
         }
     }
 }
