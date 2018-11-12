@@ -11,7 +11,6 @@ namespace THE_dungeon_crawler_game
 {
     class Player : Entity, ICollidable
     {
-        private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);
         public Vector2 playerDirection
@@ -41,7 +40,6 @@ namespace THE_dungeon_crawler_game
             base(frameCountWidth, frameCountHeight,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
         {
             health = 100;
-            moveSpeed = playerSpeed;
         }
 
         public override void Update(GameTime gameTime)
@@ -50,22 +48,22 @@ namespace THE_dungeon_crawler_game
             #region movement
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                position.X -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                position.X -= (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
                 ePlayerDirection = PlayerDirection.left;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                position.X += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                position.X += (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
                 ePlayerDirection = PlayerDirection.right;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                position.Y -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                position.Y -= (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
                 ePlayerDirection = PlayerDirection.up;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                position.Y += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                position.Y += (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
                 ePlayerDirection = PlayerDirection.down;
             }
 
