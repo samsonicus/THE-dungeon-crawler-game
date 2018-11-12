@@ -11,7 +11,8 @@ namespace THE_dungeon_crawler_game
     {
         float elapsed = 0;
 
-        public SinProjectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) : base(frameCount, animationFPS, startPosition, spriteName, speed, direction, damage, owner)
+        public SinProjectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) 
+            : base(frameCount, animationFPS, startPosition, spriteName, speed, direction, damage, owner)
         {
 
 
@@ -25,10 +26,11 @@ namespace THE_dungeon_crawler_game
 
             double t = gameTime.ElapsedGameTime.TotalSeconds;
             elapsed += (float)t;
-            float angle = eDirection.Y / eDirection.X;
+            float angle = (float)Math.Atan2((double)eDirection.Y, (double)eDirection.X);
             Vector2 john = new Vector2(0, (float)Math.Sin(elapsed*10)*4) * 50;
+            john = Vector2.Transform(john, Matrix.CreateRotationZ(angle));
             position += (john + (Speed*eDirection))*(float)t;
-
+            
         }
     }
 }

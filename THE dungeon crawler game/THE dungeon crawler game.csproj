@@ -45,6 +45,7 @@
     <Compile Include="Entity\CosProjectile.cs" />
     <Compile Include="Entity\Enemy.cs" />
     <Compile Include="Entity\Entity.cs" />
+    <Compile Include="Entity\SimpleProjectile.cs" />
     <Compile Include="Entity\SinProjectile.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameObject.cs" />

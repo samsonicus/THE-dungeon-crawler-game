@@ -24,9 +24,6 @@ namespace THE_dungeon_crawler_game
         {
             base.Update(gameTime);
 
-            
-
-
         }
 
 

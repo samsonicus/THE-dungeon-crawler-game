@@ -17,6 +17,8 @@ namespace THE_dungeon_crawler_game
         {
             get { return eDirection; }
         }
+
+
         private double lastShot = 0;
 
         private int health;
@@ -76,10 +78,21 @@ namespace THE_dungeon_crawler_game
             //position += direction * (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
 
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
+
+            Point currentMousePosition = Mouse.GetState().Position;
+            Vector2 mouseDirection = new Vector2(currentMousePosition.X - position.X, currentMousePosition.Y - position.Y);
+
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && lastShot > 0.3f)
             {
-                Point currentMousePosition = Mouse.GetState().Position;
-                Vector2 mouseDirection = new Vector2(currentMousePosition.X - position.X, currentMousePosition.Y - position.Y);
+                
+                GameWorld.AddGameObject(new SimpleProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
+                lastShot = 0;
+            }
+
+            if (Mouse.GetState().RightButton == ButtonState.Pressed && lastShot > 0.3f)
+            {
+
+                
                 GameWorld.AddGameObject(new SinProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
                 GameWorld.AddGameObject(new CosProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
                 lastShot = 0;

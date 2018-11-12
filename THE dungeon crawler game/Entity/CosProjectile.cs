@@ -25,10 +25,11 @@ namespace THE_dungeon_crawler_game
 
             double t = gameTime.ElapsedGameTime.TotalSeconds;
             elapsed += (float)t;
-            float angle = eDirection.Y / eDirection.X;
+            float angle = (float)Math.Atan2((double)eDirection.Y, (double)eDirection.X);
             Vector2 john = new Vector2(0, (float)Math.Cos(elapsed * 10) * 4) * 50;
+            john = Vector2.Transform(john, Matrix.CreateRotationZ(angle));
             position += (john + (Speed * eDirection)) * (float)t;
-
+            
         }
     }
 }

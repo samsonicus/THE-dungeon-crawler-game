@@ -46,7 +46,7 @@ namespace THE_dungeon_crawler_game
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            
+
             if (!GameWorld.ScreenSize.Intersects(CollisionBox))
             {
                 GameWorld.RemoveGameObject(this);
