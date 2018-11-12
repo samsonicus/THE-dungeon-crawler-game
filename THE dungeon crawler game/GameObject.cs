@@ -15,7 +15,14 @@ namespace THE_dungeon_crawler_game
         private float animationFPS;
         protected float rotation;
         protected Vector2 position = new Vector2(32,0);
-        public Vector2 Position { get => position; }
+        public Vector2 Position
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+            }
+        }
         protected PlayerDirection ePlayerDirection = PlayerDirection.down;
         
         

@@ -9,6 +9,7 @@ namespace THE_dungeon_crawler_game
 {
     class ObstacleTile : Tiles, ICollidable
     {
+        protected int collisionPushDistance = 5;
         public ObstacleTile (Vector2 starPosition, string spriteName) : base(starPosition, spriteName)
         {
 
@@ -16,7 +17,12 @@ namespace THE_dungeon_crawler_game
 
         public void DoCollision(ICollidable otherCollidable)
         {
-            //TODO - Finalize collision handling
+            if(otherCollidable is Player || otherCollidable is Enemy)
+            {
+                Vector2 pushDirection = (otherCollidable as Entity).Position - position;
+                pushDirection.Normalize();
+                (otherCollidable as Entity).Position += pushDirection * collisionPushDistance;
+            }
         }
 
         public bool IsColliding(ICollidable otherCollidable)
@@ -24,7 +30,7 @@ namespace THE_dungeon_crawler_game
             return CollisionBox.Intersects(otherCollidable.CollisionBox);
         }
 
-        public Rectangle CollisionBox
+        public override Rectangle CollisionBox
         {
             get
             {
