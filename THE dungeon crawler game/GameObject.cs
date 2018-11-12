@@ -87,7 +87,6 @@ namespace THE_dungeon_crawler_game
             position = startPosition;
             this.animationFPS = animationFPS;
             animationRectangles = new Rectangle[frameCountWidth];
-            int goDirection = (int)ePlayerDirection;
 
             for (int i = 0; i < frameCountWidth; i++)
             {
@@ -108,7 +107,6 @@ namespace THE_dungeon_crawler_game
             position = startPosition;
             this.animationFPS = animationFPS;
             animationRectanglesSheet = new Rectangle[frameCountWidth,frameCountHeight];
-            int goDirection = (int)ePlayerDirection;
 
             for (int i = 0; i < frameCountWidth; i++)
             {
