@@ -9,9 +9,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace THE_dungeon_crawler_game
 {
-    public class Player : Entity, ICollidable, ICombatEntity
+    class Player : Entity, ICollidable
     {
-        private const int playerSpeed = 100;
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);
         public Vector2 playerDirection
@@ -41,7 +40,6 @@ namespace THE_dungeon_crawler_game
             base(frameCountWidth, frameCountHeight,animationFPS,startPosition,spriteName,moveSpeed,pDirection)
         {
             health = 100;
-            moveSpeed = playerSpeed;
         }
 
         public override void Update(GameTime gameTime)
@@ -50,23 +48,23 @@ namespace THE_dungeon_crawler_game
             #region movement
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                position.X -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.left;
+                position.X -= (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.left;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                position.X += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.right;
+                position.X += (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.right;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                position.Y -= (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.up;
+                position.Y -= (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.up;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                position.Y += (float)(playerSpeed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
-                ePlayerDirection = THE_dungeon_crawler_game.PlayerDirection.down;
+                position.Y += (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
+                ePlayerDirection = PlayerDirection.down;
             }
 
 
@@ -117,16 +115,6 @@ namespace THE_dungeon_crawler_game
             }
         }
 
-        public void Attack()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GainHealth(int lifeGained)
-        {
-            //TODO;
-        }
-
         public bool IsColliding(ICollidable otherCollidable)
         {
             return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
@@ -152,11 +140,6 @@ namespace THE_dungeon_crawler_game
         {
             
             spriteBatch.Draw(sprite, position, CurrentAnimationRectangle, Color.White);
-        }
-
-        public void LoseHealth(int lifeLost)
-        {
-            health -= lifeLost;
         }
     }
 }
