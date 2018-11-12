@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace THE_dungeon_crawler_game
 {
     class Projectile : Entity, ICollidable
     {
-        
+
         private Entity owner;
         private int damage;
 
@@ -54,10 +55,20 @@ namespace THE_dungeon_crawler_game
         {
             if (target is ICombatEntity)
             {
-                
+
             }
         }
 
+
+        public Vector2 AdjustedPosition
+        {
+            get {
+                var pos = position;
+                var rect = animationRectanglesSheet[0, currentAnimationIndex];
+                pos -= new Vector2(rect.Width / 2, rect.Height / 2);
+                return pos;
+            }
+        }
 
         /// <summary>
         /// Update function that removes the bullet if it hits a wall. 
@@ -91,11 +102,18 @@ namespace THE_dungeon_crawler_game
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y, animationRectanglesSheet[0, currentAnimationIndex].Width, 
-                    animationRectanglesSheet[0, currentAnimationIndex].Height);
+                var rect = animationRectanglesSheet[0, currentAnimationIndex];
+                return new Rectangle((int)AdjustedPosition.X, (int)AdjustedPosition.Y, rect.Width,
+                    rect.Height);
             }
         }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
 
+            var rect = animationRectanglesSheet[0, currentAnimationIndex];
+
+            spriteBatch.Draw(sprite, AdjustedPosition, rect, Color.White);
+        }
     }
 
 }
