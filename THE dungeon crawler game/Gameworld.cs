@@ -105,7 +105,8 @@ namespace THE_dungeon_crawler_game
             player = new Player(100, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), "PlayerAllDirections");
             gameObjects.Add(player);
             gameObjects.Add(new HeartContainer());
-
+            gameObjects.Add(new Enemy(100, 50, 10, 10, 1, 3, 3, new Vector2(50, 50), "guardbot1", 50, new Vector2(50)));
+            gameObjects.Add(new TurretEnemy(new Vector2(50,50), new Vector2(50,50)));
 
             var rnd = new Random();
             var w = GameWorld.ScreenSize.Width - 32;

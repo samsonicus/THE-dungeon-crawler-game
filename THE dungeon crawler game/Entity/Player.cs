@@ -105,7 +105,7 @@ namespace THE_dungeon_crawler_game
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && lastShot > 0.2f)
             {
 
-                GameWorld.AddGameObject(new SimpleProjectile(3, 3, position, "bullet1", 200, mouseDirection, 10, this));
+                GameWorld.AddGameObject(new SimpleProjectile(position, mouseDirection, this));
                 lastShot = 0;
             }
 

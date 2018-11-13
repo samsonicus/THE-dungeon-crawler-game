@@ -48,6 +48,7 @@
     <Compile Include="Entity\PowerUp.cs" />
     <Compile Include="Entity\SimpleProjectile.cs" />
     <Compile Include="Entity\SinProjectile.cs" />
+    <Compile Include="Entity\TurretEnemy.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Gameworld.cs" />
