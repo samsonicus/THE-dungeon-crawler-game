@@ -13,7 +13,7 @@ namespace THE_dungeon_crawler_game
     {
         protected const int visionRange = 700;
         protected Player player;
-        protected float lastAttack;
+        protected double lastAttack;
         protected Faceing faceing = Faceing.North;
         protected int health;
         protected float attackRange;
