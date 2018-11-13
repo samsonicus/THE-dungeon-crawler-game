@@ -86,16 +86,24 @@ namespace THE_dungeon_crawler_game
         public bool IsColliding(ICollidable otherCollidable)
         {
 
-            return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
+            if ((otherCollidable != owner && otherCollidable is ICombatEntity) || otherCollidable is ObstacleTile)
+            {
+                return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
+            }
+            return false;
 
         }
 
         public void DoCollision(ICollidable otherCollidable)
         {
-            if (otherCollidable is Enemy || otherCollidable is ObstacleTile)
+            GameWorld.RemoveGameObject(this);
+            if (otherCollidable is ICombatEntity)
             {
-                GameWorld.RemoveGameObject(this);
+                ICombatEntity damageTarget = (ICombatEntity)otherCollidable;
+                damageTarget.LoseHealth(damage);
             }
+
+
         }
 
         public Rectangle CollisionBox
@@ -109,10 +117,10 @@ namespace THE_dungeon_crawler_game
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-
+            bool ownerIsEnemy = !(owner is Player);
             var rect = animationRectanglesSheet[0, currentAnimationIndex];
 
-            spriteBatch.Draw(sprite, AdjustedPosition, rect, Color.White);
+            spriteBatch.Draw(sprite, AdjustedPosition, rect, ownerIsEnemy ? Color.Red : Color.White);
         }
     }
 
