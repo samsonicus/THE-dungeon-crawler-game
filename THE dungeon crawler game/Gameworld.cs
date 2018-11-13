@@ -26,6 +26,7 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        private GameMap activeGameMap;
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
@@ -96,7 +97,7 @@ namespace THE_dungeon_crawler_game
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 576;
             graphics.PreferredBackBufferWidth = 1024;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
         }
 
@@ -124,6 +125,7 @@ namespace THE_dungeon_crawler_game
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //string[] playerSpriteFile = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\TextFiles\PlayerSprites.txt");
+            activeGameMap = GameMap.GenerateMap();
 
             player = new Player(10, new Vector2(0,0), 4,4, 5, new Vector2(1,1),"PlayerAllDirections");
             gameObjects.Add(player);
