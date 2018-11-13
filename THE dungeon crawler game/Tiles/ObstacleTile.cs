@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace THE_dungeon_crawler_game
 {
     class ObstacleTile : Tiles, ICollidable
-    {
+    { 
         protected int collisionPushDistance = 5;
         public ObstacleTile (Vector2 starPosition, string spriteName) : base(starPosition, spriteName)
         {
@@ -34,7 +34,7 @@ namespace THE_dungeon_crawler_game
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y, 32, 32);
+                return new Rectangle((int)position.X, (int)position.Y, tileSize, tileSize);
             }
         }
     }

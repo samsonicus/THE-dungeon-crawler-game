@@ -28,31 +28,63 @@ namespace THE_dungeon_crawler_game
         /// <summary>
         /// Room constructor
         /// </summary>
-        /// <param name="roomMapPos">The posistion of the room in the game map</param>
+        /// <param name="roomMapPos">The posistion of the room in the game map (x,y)</param>
         public Room(Point roomMapPos,RoomType roomType)
         {
             roomTiles = new Tiles[17, 13];
             this.roomMapPos = roomMapPos;
-            this.roomType = roomType; 
+            this.roomType = roomType;
+            Genrerate();
         }
 
+        /// <summary>
+        /// Generates a room from tiles
+        /// </summary>
         private void Genrerate()
         {
             for (int i = 0; i < roomTiles.GetLength(0); i++)
             {
                 for (int j = 0; j < roomTiles.GetLength(1); j++)
                 {
-                    //Need a texture
-                    //roomTiles[i, j] = new Tiles(new Vector2(i * 32, j * 32), "test");
+                    roomTiles[i, j] = new Tiles(new Vector2((j * Tiles.tileSize)+(roomMapPos.X*2500), (i * Tiles.tileSize)+(roomMapPos.Y*2500)), "Tiles/MetalFloor1");
                 }
             }
             if (!ValidateRoom())
             {
                 roomTiles = new Tiles[17, 13];
                 Genrerate();
+                return;
+            }
+            AddTilesToWorld();
+            return;
+        }
+
+        /// <summary>
+        /// Add the roomTiles to the gameworld
+        /// </summary>
+        private void AddTilesToWorld()
+        {
+            foreach (Tiles tiles in roomTiles)
+            {
+                GameWorld.AddGameObject(tiles);
+            }   
+        }
+
+        /// <summary>
+        /// Removes the room from the game map
+        /// </summary>
+        public void RemoveRoom()
+        {
+            foreach (Tiles tiles in roomTiles)
+            {
+                GameWorld.RemoveGameObject(tiles);
             }
         }
 
+        /// <summary>
+        /// Validates the room - !!! NOT Implemented !!!
+        /// </summary>
+        /// <returns>Returns if the room is valid</returns>
         private bool ValidateRoom()
         {
             //TODO

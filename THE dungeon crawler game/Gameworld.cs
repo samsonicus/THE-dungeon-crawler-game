@@ -26,6 +26,7 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        private GameMap activeGameMap;
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
@@ -96,7 +97,7 @@ namespace THE_dungeon_crawler_game
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 576;
             graphics.PreferredBackBufferWidth = 1024;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
         }
 
@@ -128,6 +129,8 @@ namespace THE_dungeon_crawler_game
             gameObjects.Add(player);
             gameObjects.Add(new HeartContainer());
 
+            //string[] playerSpriteFile = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\TextFiles\PlayerSprites.txt");
+            activeGameMap = GameMap.GenerateMap();
 
             var rnd = new Random();
             var w = GameWorld.ScreenSize.Width - 32;
