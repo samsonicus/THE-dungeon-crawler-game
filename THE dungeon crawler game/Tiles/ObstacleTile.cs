@@ -30,7 +30,7 @@ namespace THE_dungeon_crawler_game
             return CollisionBox.Intersects(otherCollidable.CollisionBox);
         }
 
-        public override Rectangle CollisionBox
+        public virtual Rectangle CollisionBox
         {
             get
             {

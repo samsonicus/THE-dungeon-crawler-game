@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,12 +47,13 @@ namespace THE_dungeon_crawler_game
             {
                 for (int j = 0; j < roomTiles.GetLength(1); j++)
                 {
-                    roomTiles[i, j] = new Tiles(new Vector2((j * Tiles.tileSize)+(roomMapPos.X*2500), (i * Tiles.tileSize)+(roomMapPos.Y*2500)), "Tiles/MetalFloor1");
+                    roomTiles[i, j] = new Tiles(new Vector2((i * Tiles.tileSize)+(roomMapPos.X*2500), (j * Tiles.tileSize)+(roomMapPos.Y*2500)), "Tiles/MetalFloor1");
+                    Debug.Print($"Added Tile{roomTiles[i,j].Position}");
                 }
             }
             if (!ValidateRoom())
             {
-                roomTiles = new Tiles[17, 13];
+                roomTiles = new Tiles[13, 17];
                 Genrerate();
                 return;
             }
@@ -67,6 +69,7 @@ namespace THE_dungeon_crawler_game
             foreach (Tiles tiles in roomTiles)
             {
                 GameWorld.AddGameObject(tiles);
+
             }   
         }
 

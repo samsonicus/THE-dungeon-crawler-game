@@ -32,6 +32,13 @@ namespace THE_dungeon_crawler_game
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         private static GraphicsDeviceManager graphics;
         private static Vector3 cameraPosition;
+        public static Vector3 CameraPosition
+        {
+            get
+            {
+                return cameraPosition;
+            }
+        }
 
 
         private static Player player;
@@ -52,8 +59,10 @@ namespace THE_dungeon_crawler_game
         #region camera
         public static void SetCameraPosition(int x,int y)
         {
-            cameraPosition = new Vector3(x, y, 0);
+            cameraPosition = new Vector3(-x+graphics.PreferredBackBufferWidth*0.5f, -y+graphics.PreferredBackBufferHeight*0.5f, 0); 
         }
+
+        
         #endregion
 
         #region Add/Remove methods
@@ -95,8 +104,10 @@ namespace THE_dungeon_crawler_game
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferHeight = 576;
-            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
+            /*graphics.PreferredBackBufferHeight = 576;
+            graphics.PreferredBackBufferWidth = 1024;*/
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
         }

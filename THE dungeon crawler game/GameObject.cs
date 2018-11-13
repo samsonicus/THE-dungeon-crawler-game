@@ -126,11 +126,9 @@ namespace THE_dungeon_crawler_game
         /// Standart draw function for game objects. Simply draws the sprite given to it.
         /// </summary>
         /// <param name="spriteBatch">The spritebatch used for the drawing</param>
-        /// <param name="gameTime"></param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-             spriteBatch.Draw(sprite, position, animationRectanglesSheet[0,currentAnimationIndex], Color.White);
-
+            spriteBatch.Draw(sprite, position, animationRectanglesSheet[0,currentAnimationIndex], Color.White);
         }
     }
 }
