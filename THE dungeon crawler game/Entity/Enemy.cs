@@ -177,16 +177,16 @@ namespace THE_dungeon_crawler_game
             switch (faceing)
             {
                 case Faceing.North:
-                    attackBox = new Rectangle((int)(position.X + 16 - (attackWidth * 0.5f)), (int)(position.Y - attackRange), attackWidth, (int)attackRange);
+                    attackBox = new Rectangle((int)(position.X + 16 - (attackWidth * 0.5f)), (int)(position.Y - attackRange), attackWidth, (int)attackRange+32);
                     break;
                 case Faceing.East:
-                    attackBox = new Rectangle((int)(position.X + 32), (int)(position.Y + 16 - (attackWidth * 0.5f)), (int)attackRange, attackWidth);
+                    attackBox = new Rectangle((int)(position.X), (int)(position.Y + 16 - (attackWidth * 0.5f)), (int)attackRange+32, attackWidth);
                     break;
                 case Faceing.South:
-                    attackBox = new Rectangle((int)(position.X + 16 - (attackWidth * 0.5f)), (int)(position.Y + 32), attackWidth, (int)attackRange);
+                    attackBox = new Rectangle((int)(position.X + 16 - (attackWidth * 0.5f)), (int)(position.Y), attackWidth, (int)attackRange+32);
                     break;
                 case Faceing.West:
-                    attackBox = new Rectangle((int)(position.X - attackRange),(int)(position.Y + 16 - (attackWidth * 0.5f)), (int)attackRange, attackWidth);
+                    attackBox = new Rectangle((int)(position.X - attackRange),(int)(position.Y + 16 - (attackWidth * 0.5f)), (int)attackRange+32, attackWidth);
                     break;
                 default:
                     return;                    

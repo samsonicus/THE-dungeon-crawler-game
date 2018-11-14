@@ -154,10 +154,10 @@ namespace THE_dungeon_crawler_game
         /// <param name="otherCollidable">Another GameObject that is collidable</param>
         public void DoCollision(ICollidable otherCollidable)
         {
-            if (otherCollidable is Enemy)
+            /*if (otherCollidable is Enemy)
             {
                 health--;
-            }
+            }*/
         }
 
         /// <summary>
