@@ -26,7 +26,7 @@ namespace THE_dungeon_crawler_game
         /// Applies a powerup to the player.
         /// Adds it to the activePowerUp list, and removes it from the GameWorld so it is no longer rendered.
         /// </summary>
-        /// <param name="powerup"></param>
+        /// <param name="powerup">The powerup that is walked over</param>
         public void AddPowerUp(PowerUp powerup)
         {
             powerup.ApplyPowerup(this);
@@ -44,7 +44,7 @@ namespace THE_dungeon_crawler_game
         }
 
         /// <summary>
-        /// The player constuctor
+        /// The standart player constuctor
         /// </summary>
         /// <param name="speed">Speed of the player</param>
         /// <param name="direction">The direction the player is moving in</param>
@@ -58,6 +58,9 @@ namespace THE_dungeon_crawler_game
             health = 10;
         }
 
+        /// <summary>
+        /// Updated Update for the player class
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -140,8 +143,10 @@ namespace THE_dungeon_crawler_game
             }
         }
 
-
-
+        /// <summary>
+        /// When colliding, makes you loose HP if the other object is an Enemy 
+        /// </summary>
+        /// <param name="otherCollidable">Another GameObject that is collidable</param>
         public void DoCollision(ICollidable otherCollidable)
         {
             if (otherCollidable is Enemy)
@@ -150,6 +155,11 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        /// <summary>
+        /// checks if two objects are colliding
+        /// </summary>
+        /// <param name="otherCollidable">Another colliadable object (Has to have ICollidable)</param>
+        /// <returns>Returns tru if two ICollidable objects are colliding, and false if they are not</returns>
         public bool IsColliding(ICollidable otherCollidable)
         {
             return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
@@ -157,6 +167,9 @@ namespace THE_dungeon_crawler_game
 
         public Rectangle CurrentAnimationRectangle { get => animationRectanglesSheet[(int)ePlayerDirection, currentAnimationIndex]; }
 
+        /// <summary>
+        /// Returns a new rectangle
+        /// </summary>
         public Rectangle CollisionBox
         {
             get
@@ -169,27 +182,38 @@ namespace THE_dungeon_crawler_game
             }
         }
 
-
-
+        /// <summary>
+        /// Updated Draw method for the player class
+        /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             spriteBatch.Draw(sprite, position, CurrentAnimationRectangle, Color.White);
         }
 
-        public void Attack()
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Method for gaining life
+        /// </summary>
+        /// <param name="lifeGained">How much life is gained</param>
         public void GainHealth(int lifeGained)
         {
             this.health += lifeGained;
         }
 
+        /// <summary>
+        /// Method for losing life
+        /// </summary>
+        /// <param name="lifeLost">How much life is lost</param>
         public void LoseHealth(int lifeLost)
         {
             this.health -= lifeLost;
+        }
+
+        /// <summary>
+        /// Attack fuction is found in the updated Update method
+        /// </summary>
+        public void Attack()
+        {
+            throw new NotImplementedException();
         }
     }
 }
