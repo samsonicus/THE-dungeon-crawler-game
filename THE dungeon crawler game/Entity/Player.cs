@@ -209,7 +209,7 @@ namespace THE_dungeon_crawler_game
         }
 
         /// <summary>
-        /// Attack fuction is found in the updated Update method
+        /// Attack function is found in the updated Update method
         /// </summary>
         public void Attack()
         {

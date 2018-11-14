@@ -104,7 +104,12 @@ namespace THE_dungeon_crawler_game
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            player = new Player(100, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), "PlayerAllDirections");
+
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"\Content\TextFiles\PlayerSprites.txt";
+            string readFile = File.ReadAllText(path);
+
+
+            player = new Player(100, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), readFile);
             gameObjects.Add(player);
             gameObjects.Add(new HeartContainer());
 
