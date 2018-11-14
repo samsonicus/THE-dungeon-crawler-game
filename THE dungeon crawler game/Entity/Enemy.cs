@@ -224,8 +224,11 @@ namespace THE_dungeon_crawler_game
         }
         public bool IsColliding(ICollidable otherCollidable)
         {
-            return (otherCollidable is Projectile || otherCollidable is ObstacleTile);
-
+            if (otherCollidable is Projectile || otherCollidable is ObstacleTile)
+            {
+                return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
+            }
+            return false;
         }
 
         public void DoCollision(ICollidable otherCollidable)
