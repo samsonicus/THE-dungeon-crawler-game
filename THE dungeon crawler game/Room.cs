@@ -47,7 +47,12 @@ namespace THE_dungeon_crawler_game
             {
                 for (int j = 0; j < roomTiles.GetLength(1); j++)
                 {
-                    roomTiles[i, j] = new Tiles(new Vector2((i * Tiles.tileSize)+(roomMapPos.X*2500), (j * Tiles.tileSize)+(roomMapPos.Y*2500)), "Tiles/MetalFloor1");
+                    if(i == 0 || i == roomTiles.GetLength(0)-1 || j == 0 || j == roomTiles.GetLength(1)-1)
+                    {
+                        roomTiles[i, j] = new ObstacleTile(new Vector2((i * Tiles.tileSize) + (roomMapPos.X * 2000), (j * Tiles.tileSize) + (roomMapPos.Y * 2000)),"Tiles/BlueWall1");
+                        continue;
+                    }
+                    roomTiles[i, j] = new Tiles(new Vector2((i * Tiles.tileSize)+(roomMapPos.X*2000), (j * Tiles.tileSize)+(roomMapPos.Y*2000)), "Tiles/MetalFloor1");
                     Debug.Print($"Added Tile{roomTiles[i,j].Position}");
                 }
             }
@@ -57,26 +62,24 @@ namespace THE_dungeon_crawler_game
                 Genrerate();
                 return;
             }
-            AddTilesToWorld();
             return;
         }
 
         /// <summary>
         /// Add the roomTiles to the gameworld
         /// </summary>
-        private void AddTilesToWorld()
+        public void AddRoomToWorld()
         {
             foreach (Tiles tiles in roomTiles)
             {
                 GameWorld.AddGameObject(tiles);
-
             }   
         }
 
         /// <summary>
         /// Removes the room from the game map
         /// </summary>
-        public void RemoveRoom()
+        public void RemoveRoomFromWorld()
         {
             foreach (Tiles tiles in roomTiles)
             {
@@ -97,7 +100,7 @@ namespace THE_dungeon_crawler_game
         /// <summary>
         /// Generate a new Room object
         /// </summary>
-        /// <param name="roomMapPos">The position of the room in the 2d map array</param>
+        /// <param name="roomMapPos">The position of the room in the 2d map array(y,x)</param>
         /// <returns>Returns a new room object</returns>
         public static Room GenerateRoom(Point roomMapPos)
         {

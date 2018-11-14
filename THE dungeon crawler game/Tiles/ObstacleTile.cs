@@ -27,7 +27,11 @@ namespace THE_dungeon_crawler_game
 
         public bool IsColliding(ICollidable otherCollidable)
         {
-            return CollisionBox.Intersects(otherCollidable.CollisionBox);
+            if (otherCollidable is Player || otherCollidable is Enemy)
+            {
+                return CollisionBox.Intersects(otherCollidable.CollisionBox);
+            }
+            else return false;
         }
 
         public virtual Rectangle CollisionBox

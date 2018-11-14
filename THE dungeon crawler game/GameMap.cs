@@ -13,6 +13,7 @@ namespace THE_dungeon_crawler_game
         private int mapWidth;
         private int mapHeight;
         private Room[,] roomsLayout;
+        private Point activeRoom = new Point(0,0);
         /// <summary>
         /// Returns the 2d array of rooms in the map
         /// </summary>
@@ -33,6 +34,8 @@ namespace THE_dungeon_crawler_game
             mapHeight = 5;
             roomsLayout = new Room[mapHeight, mapWidth];
             GenerateRooms();
+            roomsLayout[activeRoom.X, activeRoom.Y].AddRoomToWorld();
+            GameWorld.SetCameraPosition((int)(17 * Tiles.tileSize * 0.5f), (int)(13 * Tiles.tileSize * 0.5f));
         }
 
         /// <summary>
@@ -46,6 +49,7 @@ namespace THE_dungeon_crawler_game
             this.mapHeight = mapHeight;
             roomsLayout = new Room[mapHeight, mapWidth];
             GenerateRooms();
+            roomsLayout[activeRoom.X, activeRoom.Y].AddRoomToWorld();
         }
         /// <summary>
         /// Generates a new 5x5 map

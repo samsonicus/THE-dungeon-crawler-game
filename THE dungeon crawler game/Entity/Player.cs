@@ -82,7 +82,7 @@ namespace THE_dungeon_crawler_game
                 position.Y += (float)(speed * gameTime.ElapsedGameTime.TotalSeconds) * GameWorld.updateSpeed;
                 ePlayerDirection = PlayerDirection.down;
             }
-
+            
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {

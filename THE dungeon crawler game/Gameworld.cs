@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 
 namespace THE_dungeon_crawler_game
@@ -187,17 +188,12 @@ namespace THE_dungeon_crawler_game
                     if (go is ICollidable)
                     {
                         ICollidable collidable = (ICollidable)go;
-                        foreach (GameObject other in gameObjects)
+                        foreach (ICollidable other in gameObjects.OfType<ICollidable>())
                         {
-                            if (other is ICollidable)
+                            if (collidable != other && collidable.IsColliding(other))
                             {
-                                if (collidable != other && collidable.IsColliding((ICollidable)other))
-                                {
-                                   collidable.DoCollision((ICollidable)other);
-                                }
+                                collidable.DoCollision(other);
                             }
-
-
                         }
                     }
                    
@@ -235,11 +231,11 @@ namespace THE_dungeon_crawler_game
             {
                 gameObject.Draw(spriteBatch);
 
-                if (gameObject is ICollidable) //draws collisionbox if object is ICollidable
+                /*if (gameObject is ICollidable) //draws collisionbox if object is ICollidable
                 {
                     DrawCollisionBox((ICollidable)gameObject);
                     
-                }
+                }*/
             }
 
             
