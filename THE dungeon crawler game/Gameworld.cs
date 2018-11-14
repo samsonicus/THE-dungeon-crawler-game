@@ -113,9 +113,6 @@ namespace THE_dungeon_crawler_game
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
-            /*graphics.PreferredBackBufferHeight = 576;
-            graphics.PreferredBackBufferWidth = 1024;*/
-            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
         }
 
@@ -151,17 +148,17 @@ namespace THE_dungeon_crawler_game
             player = new Player(100, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), "PlayerAllDirections");
             gameObjects.Add(player);
             gameObjects.Add(new HUD());
-            gameObjects.Add(new Enemy(100, 50, 10, 10, 1, 3, 3, new Vector2(50, 50), "guardbot1", 50, new Vector2(50)));
+            gameObjects.Add(new Enemy(10, 50, 10, 10, 1, 3, 3, new Vector2(50, 50), "guardbot1", 50, new Vector2(50)));
             gameObjects.Add(new TurretEnemy(new Vector2(50,50), new Vector2(50,50)));
             activeGameMap = GameMap.GenerateMap();
 
             var rnd = new Random();
-            var w = GameWorld.ScreenSize.Width - 32;
-            var h = GameWorld.ScreenSize.Height - 32;
-            for (int i = 0; i < 10; i++)
+            var w = Tiles.tileSize * 15;
+            var h = Tiles.tileSize * 11;
+            for (int i = 0; i < 3; i++)
             {
-                gameObjects.Add(new MovementSpeedPowerup(new Vector2((float)rnd.NextDouble() * w, (float)rnd.NextDouble() * h), 10));
-                gameObjects.Add(new DamageBoostPowerup(new Vector2((float)rnd.NextDouble() * w, (float)rnd.NextDouble() * h), 10, 1));
+                gameObjects.Add(new MovementSpeedPowerup(new Vector2((float)rnd.NextDouble() * w+50, (float)rnd.NextDouble() * h+50), 10));
+                gameObjects.Add(new DamageBoostPowerup(new Vector2((float)rnd.NextDouble() * w+50, (float)rnd.NextDouble() * h+50), 10, 1));
 
             }
 
