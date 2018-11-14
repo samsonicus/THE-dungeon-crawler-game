@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:CollisionTexture.png
 
+#begin DamageBoost.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DamageBoost.png
+
 #begin FloorTileSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -84,6 +96,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:hoverbot1sheet.png
+
+#begin HUDFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:HUDFont.spritefont
 
 #begin Player.png
 /importer:TextureImporter

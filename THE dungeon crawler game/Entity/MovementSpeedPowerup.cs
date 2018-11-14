@@ -18,9 +18,9 @@ namespace THE_dungeon_crawler_game
         /// <param name="startPosition">Sets position of powerup</param>
         /// <param name="speedAmount">Determines how much speed the powerup gives</param>
         /// <param name="duration">Determines how long the powerup lasts on the player</param>
-        public MovementSpeedPowerup(Vector2 startPosition, int speedAmount, float duration) : base(1, 1, startPosition, "SpeedPowerUp", duration)
+        public MovementSpeedPowerup(Vector2 startPosition, float duration) : base(1, 1, startPosition, "SpeedPowerUp", duration)
         {
-            this.speedAmount = speedAmount;
+            this.speedAmount = 50;
         }
 
         public Rectangle CollisionBox
@@ -31,10 +31,24 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        public override string ShortName { get => "SPD"; }
 
-        public override void ApplyPowerup(Player player)
+        public override int PowerupValue { get => speedAmount; }
+
+        public override bool ApplyPowerup(Player player)
         {
+
+            foreach (PowerUp powerUp in player.activePowerups)
+            {
+                if (powerUp is MovementSpeedPowerup)
+                {
+                    powerUp.duration = 10;
+                    return false;       
+                }
+                
+            }
             player.Speed += speedAmount;
+            return true;    
         }
 
         public override void RemovePowerup(Player player)

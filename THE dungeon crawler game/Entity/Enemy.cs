@@ -9,11 +9,11 @@ namespace THE_dungeon_crawler_game
 {
     public enum Faceing {North,East,South,West}
 
-    public class Enemy : Entity, ICombatEntity
+    public class Enemy : Entity, ICombatEntity, ICollidable
     {
         protected const int visionRange = 700;
         protected Player player;
-        protected float lastAttack;
+        protected double lastAttack;
         protected Faceing faceing = Faceing.North;
         protected int health;
         protected float attackRange;
@@ -38,6 +38,15 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        public Rectangle CollisionBox
+        {
+            get
+            {
+                var rect = animationRectanglesSheet[0, currentAnimationIndex];
+                rect.Offset(position);
+                return rect;
+            }
+        }
         /// <summary>
         /// Contructor for Enemy without animation.
         /// </summary>
@@ -212,6 +221,19 @@ namespace THE_dungeon_crawler_game
         protected override void Die()
         {
             GameWorld.RemoveGameObject(this);
+        }
+        public bool IsColliding(ICollidable otherCollidable)
+        {
+            if (otherCollidable is Projectile || otherCollidable is ObstacleTile)
+            {
+                return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
+            }
+            return false;
+        }
+
+        public void DoCollision(ICollidable otherCollidable)
+        {
+            
         }
     }
 }

@@ -12,16 +12,13 @@ namespace THE_dungeon_crawler_game
         /// <summary>
         /// Constructor for the SimpleProjectile
         /// </summary>
-        /// <param name="frameCount">Frames in the sprite used</param>
-        /// <param name="animationFPS">Frames in the animation</param>
         /// <param name="startPosition">Start position of the object</param>
-        /// <param name="spriteName">Name of the sprite used</param>
-        /// <param name="speed">The speed of the projectile</param>
         /// <param name="direction">The direction that the Projectile is moving</param>
         /// <param name="damage">How much damage the Projectile will do</param>
         /// <param name="owner">Who shot the Projectile</param>
-        public SimpleProjectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) : 
-            base(frameCount, animationFPS, startPosition, spriteName, speed, direction, damage, owner)
+        public SimpleProjectile(Vector2 startPosition, Vector2 direction, Entity owner, int damage) :
+     base(3, 3, startPosition, "bullet1", 200, direction, damage, owner)
+
         {
 
         }

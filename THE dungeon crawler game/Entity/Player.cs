@@ -15,7 +15,8 @@ namespace THE_dungeon_crawler_game
         private const float rotationSpeed = MathHelper.Pi;
         private Vector2 pDirection = new Vector2(0, 0);
         //This is the list of active powerups.
-        protected List<PowerUp> activePowerups = new List<PowerUp>();
+        public List<PowerUp> activePowerups = new List<PowerUp>();
+        public int damage = 1;
 
         public Vector2 playerDirection
         {
@@ -29,9 +30,13 @@ namespace THE_dungeon_crawler_game
         /// <param name="powerup">The powerup that is walked over</param>
         public void AddPowerUp(PowerUp powerup)
         {
-            powerup.ApplyPowerup(this);
+            
             GameWorld.RemoveGameObject((GameObject)powerup);
-            activePowerups.Add(powerup);
+            if (powerup.ApplyPowerup(this))
+            {
+                activePowerups.Add(powerup);
+            }
+            
         }
 
 
@@ -108,7 +113,7 @@ namespace THE_dungeon_crawler_game
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && lastShot > 0.2f)
             {
 
-                GameWorld.AddGameObject(new SimpleProjectile(3, 3, position, "bullet1", 200, mouseDirection, 10, this));
+                GameWorld.AddGameObject(new SimpleProjectile(position, mouseDirection, this, this.damage));
                 lastShot = 0;
             }
 
@@ -116,8 +121,8 @@ namespace THE_dungeon_crawler_game
             {
 
 
-                GameWorld.AddGameObject(new SinProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
-                GameWorld.AddGameObject(new CosProjectile(3, 3, position, "bullet1", 100, mouseDirection, 10, this));
+                GameWorld.AddGameObject(new SinProjectile(3, 3, position, "bullet1", 100, mouseDirection, this.damage, this));
+                GameWorld.AddGameObject(new CosProjectile(3, 3, position, "bullet1", 100, mouseDirection, this.damage, this));
                 lastShot = 0;
 
             }
