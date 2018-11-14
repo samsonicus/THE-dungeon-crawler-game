@@ -11,7 +11,8 @@ namespace THE_dungeon_crawler_game
     {
         float elapsed = 0;
 
-        public CosProjectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) : base(frameCount, animationFPS, startPosition, spriteName, speed, direction, damage, owner)
+        public CosProjectile(int frameCount, float animationFPS, Vector2 startPosition, string spriteName, int speed, Vector2 direction, int damage, Entity owner) : 
+            base(frameCount, animationFPS, startPosition, spriteName, speed, direction, damage, owner)
         {
 
 

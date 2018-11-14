@@ -9,8 +9,8 @@ namespace THE_dungeon_crawler_game
 {
     class SimpleProjectile : Projectile
     {
-        public SimpleProjectile(Vector2 startPosition, Vector2 direction, Entity owner) : 
-            base(3, 3, startPosition, "bullet1", 200, direction, 1, owner)
+        public SimpleProjectile(Vector2 startPosition, Vector2 direction, Entity owner, int damage) : 
+            base(3, 3, startPosition, "bullet1", 200, direction, damage, owner)
         {
 
         }

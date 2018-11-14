@@ -28,7 +28,7 @@ namespace THE_dungeon_crawler_game
             double sinceLastAttack = gameTime.TotalGameTime.TotalSeconds - lastAttack;
             if (sinceLastAttack >= attackDelay)
             {
-                GameWorld.AddGameObject(new SimpleProjectile(position, shootAtPlayer, this)); 
+                GameWorld.AddGameObject(new SimpleProjectile(position, shootAtPlayer, this, 1)); 
                 lastAttack = gameTime.TotalGameTime.TotalSeconds;
             }
 

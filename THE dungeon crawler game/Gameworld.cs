@@ -104,7 +104,7 @@ namespace THE_dungeon_crawler_game
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             player = new Player(100, new Vector2(10,10), 4, 4, 4, new Vector2(100,100), "PlayerAllDirections");
             gameObjects.Add(player);
-            gameObjects.Add(new HeartContainer());
+            gameObjects.Add(new HUD());
             gameObjects.Add(new Enemy(100, 50, 10, 10, 1, 3, 3, new Vector2(50, 50), "guardbot1", 50, new Vector2(50)));
             gameObjects.Add(new TurretEnemy(new Vector2(50,50), new Vector2(50,50)));
 
@@ -113,8 +113,8 @@ namespace THE_dungeon_crawler_game
             var h = GameWorld.ScreenSize.Height - 32;
             for (int i = 0; i < 10; i++)
             {
-                gameObjects.Add(new MovementSpeedPowerup(new Vector2((float)rnd.NextDouble() * w, (float)rnd.NextDouble() * h), 100, 2));
-
+                gameObjects.Add(new MovementSpeedPowerup(new Vector2((float)rnd.NextDouble() * w, (float)rnd.NextDouble() * h), 10));
+                gameObjects.Add(new DamageBoostPowerup(new Vector2((float)rnd.NextDouble() * w, (float)rnd.NextDouble() * h), 10, 1));
 
             }
 

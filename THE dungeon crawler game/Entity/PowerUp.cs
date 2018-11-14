@@ -17,7 +17,11 @@ namespace THE_dungeon_crawler_game
     public abstract class PowerUp : GameObject
     {
 
+        
         public double duration;
+
+        public abstract string ShortName { get; }
+        public abstract int PowerupValue { get; }
 
         /// <summary>
         /// Base constructor for powerups
@@ -33,7 +37,7 @@ namespace THE_dungeon_crawler_game
         }
 
 
-        public abstract void ApplyPowerup(Player player);
+        public abstract bool ApplyPowerup(Player player);
         public abstract void RemovePowerup(Player player);
     }
 }

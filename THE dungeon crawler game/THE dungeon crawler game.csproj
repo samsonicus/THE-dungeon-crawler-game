@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AnimatedGameObject.cs" />
     <Compile Include="Entity\CosProjectile.cs" />
+    <Compile Include="Entity\DamageBoostPowerup.cs" />
     <Compile Include="Entity\Enemy.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\PowerUp.cs" />
@@ -52,7 +53,7 @@
     <Compile Include="GameMap.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Gameworld.cs" />
-    <Compile Include="HeartContainer.cs" />
+    <Compile Include="HUD.cs" />
     <Compile Include="Interface\ICollidable.cs" />
     <Compile Include="Interface\ICombatEntity.cs" />
     <Compile Include="Entity\MovementSpeedPowerup.cs" />
