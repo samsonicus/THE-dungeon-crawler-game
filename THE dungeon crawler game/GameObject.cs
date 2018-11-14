@@ -59,7 +59,6 @@ namespace THE_dungeon_crawler_game
         /// The constructor for a GameObject with animations. 
         /// </summary>
         /// <param name="startPosition">The start position for the GameObject</param>
-        /// <param name="content">A referance for the ContentManager for loadingresources</param>
         /// <param name="spriteName">The name of the texture used for the GameObject</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
         public GameObject(int frameCountWidth, float animationFPS, Vector2 startPosition, string spriteName) : this(spriteName, startPosition)
@@ -80,7 +79,6 @@ namespace THE_dungeon_crawler_game
         /// The constructor for a GameObject with animations and a spritesheet. 
         /// </summary>
         /// <param name="startPosition">The start position for the GameObject</param>
-        /// <param name="content">A referance for the ContentManager for loadingresources</param>
         /// <param name="spriteName">The name of the texture used for the GameObject</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
         public GameObject(int frameCountWidth,int frameCountHeight ,float animationFPS, Vector2 startPosition, string spriteName) : this(spriteName, startPosition)
@@ -103,6 +101,9 @@ namespace THE_dungeon_crawler_game
 
         }
 
+        /// <summary>
+        /// Updated Update method for GameObject
+        /// </summary>
         public virtual void Update(GameTime gameTime) {
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
             currentAnimationIndex = (int)(timeElapsed * animationFPS);

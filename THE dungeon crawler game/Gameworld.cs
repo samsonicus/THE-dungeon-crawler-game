@@ -37,7 +37,9 @@ namespace THE_dungeon_crawler_game
             get { return player; }
         }
         
-
+        /// <summary>
+        /// Gets and returns the size of the screen that it is deisplaying on.
+        /// </summary>
         public static Rectangle ScreenSize
         {
             get
@@ -216,6 +218,10 @@ namespace THE_dungeon_crawler_game
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Draws ared box around all game objects. Should only be run in debug mode
+        /// </summary>
+        /// <param name="go">A GameObject with ICollidable implemented</param>
         private void DrawCollisionBox(ICollidable go)
         {
             Rectangle collisionBox = go.CollisionBox;
@@ -231,8 +237,5 @@ namespace THE_dungeon_crawler_game
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
-
-
-
     }
 }
