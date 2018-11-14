@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 
 namespace THE_dungeon_crawler_game
@@ -26,10 +27,24 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        private static GameMap activeGameMap;
+        public static GameMap ActiveGameMap
+        {
+            get { return activeGameMap; }
+        }
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         private static GraphicsDeviceManager graphics;
+        private static Vector3 cameraPosition;
+        public static Vector3 CameraPosition
+        {
+            get
+            {
+                return cameraPosition;
+            }
+        }
+
 
         private static Player player;
         public static Player Player
@@ -48,6 +63,15 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        #region camera
+        public static void SetCameraPosition(int x,int y)
+        {
+            cameraPosition = new Vector3(-x+graphics.PreferredBackBufferWidth*0.5f, -y+graphics.PreferredBackBufferHeight*0.5f, 0); 
+        }
+
+        
+        #endregion
+
         #region Add/Remove methods
 
 
@@ -58,6 +82,15 @@ namespace THE_dungeon_crawler_game
         public static void AddGameObject(GameObject go)
         {
             toBeAdded.Add(go);
+        }
+
+        /// <summary>
+        /// Adds multiple gameObjects to the toBeAdded list
+        /// </summary>
+        /// <param name="gameObjects">List of gameObjects to be added</param>
+        public static void AddMultipleGameObjects(List<GameObject> gameObjects)
+        {
+            toBeAdded.AddRange(gameObjects);
         }
 
         /// <summary>
@@ -78,6 +111,12 @@ namespace THE_dungeon_crawler_game
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
+            /*graphics.PreferredBackBufferHeight = 576;
+            graphics.PreferredBackBufferWidth = 1024;*/
+            //graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -114,6 +153,7 @@ namespace THE_dungeon_crawler_game
             gameObjects.Add(new HUD());
             gameObjects.Add(new Enemy(100, 50, 10, 10, 1, 3, 3, new Vector2(50, 50), "guardbot1", 50, new Vector2(50)));
             gameObjects.Add(new TurretEnemy(new Vector2(50,50), new Vector2(50,50)));
+            activeGameMap = GameMap.GenerateMap();
 
             var rnd = new Random();
             var w = GameWorld.ScreenSize.Width - 32;
@@ -159,17 +199,12 @@ namespace THE_dungeon_crawler_game
                     if (go is ICollidable)
                     {
                         ICollidable collidable = (ICollidable)go;
-                        foreach (GameObject other in gameObjects)
+                        foreach (ICollidable other in gameObjects.OfType<ICollidable>())
                         {
-                            if (other is ICollidable)
+                            if (collidable != other && collidable.IsColliding(other))
                             {
-                                if (collidable != other && collidable.IsColliding((ICollidable)other))
-                                {
-                                   collidable.DoCollision((ICollidable)other);
-                                }   
+                                collidable.DoCollision(other);
                             }
-
-
                         }
                     }
                    
@@ -202,16 +237,16 @@ namespace THE_dungeon_crawler_game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront,null,null,null,null,null,Matrix.CreateTranslation(cameraPosition));
             foreach (GameObject gameObject in gameObjects)
             {
                 gameObject.Draw(spriteBatch);
 
-                if (gameObject is ICollidable) //draws collisionbox if object is ICollidable
+                /*if (gameObject is ICollidable) //draws collisionbox if object is ICollidable
                 {
                     DrawCollisionBox((ICollidable)gameObject);
                     
-                }
+                }*/
             }
 
             

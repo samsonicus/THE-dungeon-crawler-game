@@ -8,9 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace THE_dungeon_crawler_game
 {
-    class Tiles : GameObject
+    public class Tiles : GameObject
     {
-        public Tiles(Vector2 starPosition, string spriteName) : base(1,1,0,starPosition, spriteName)
+        public const int tileSize = 50;
+        
+        public Tiles(Vector2 starPosition, string spriteName) : base(1,1,starPosition,spriteName)
         {
             
         }
@@ -19,10 +21,10 @@ namespace THE_dungeon_crawler_game
         /// Draws the the tile.
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch used for drawing the sprite.</param>
-        /// <param name="gameTime"></param>
-        //public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        //{
-        //    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), -10f);
-        //}
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(sprite, position, null, Color.White, rotation, Vector2.Zero, 1f, new SpriteEffects(), 0.5f);
+            
+        }
     }
 }

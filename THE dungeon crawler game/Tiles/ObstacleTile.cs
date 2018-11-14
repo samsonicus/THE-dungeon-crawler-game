@@ -9,6 +9,7 @@ namespace THE_dungeon_crawler_game
 {
     class ObstacleTile : Tiles, ICollidable
     {
+        protected int collisionPushDistance = 5;
         /// <summary>
         /// Constructor for ObstacleTile
         /// </summary>
@@ -23,29 +24,55 @@ namespace THE_dungeon_crawler_game
         /// Collision for the Tile
         /// </summary>
         /// <param name="otherCollidable">The other ICollidable object</param>
-        public void DoCollision(ICollidable otherCollidable)
+        public virtual void DoCollision(ICollidable otherCollidable)
         {
-            //TODO - Finalize collision handling
+            if(otherCollidable is Player || otherCollidable is Enemy)
+            {
+                Vector2 pushDirection = (otherCollidable as Entity).Position - position;
+                pushDirection.Normalize();
+                if(pushDirection.Y < -0.5f)
+                {
+                    (otherCollidable as Entity).Position += -Vector2.UnitY * collisionPushDistance;
+                }
+                else if (pushDirection.Y > 0.5f)
+                {
+                    (otherCollidable as Entity).Position += Vector2.UnitY * collisionPushDistance;
+                }
+                else if (pushDirection.X < -0.5f)
+                {
+                    (otherCollidable as Entity).Position += -Vector2.UnitX * collisionPushDistance;
+                }
+                else if (pushDirection.X > 0.5f)
+                {
+                    (otherCollidable as Entity).Position += Vector2.UnitX * collisionPushDistance;
+                }
+                (otherCollidable as Entity).Position += pushDirection * collisionPushDistance;
+            }
         }
 
         /// <summary>
-        /// Checks if the ObstecleTile is colliding with another ICollidable object
+        /// Checks if the tile is colliding
         /// </summary>
-        /// <param name="otherCollidable">The other ICollidable object</param>
-        /// <returns></returns>
-        public bool IsColliding(ICollidable otherCollidable)
+        /// <param name="otherCollidable">The collidable to check collision on</param>
+        /// <returns>Returns is the object is colliding</returns>
+        public virtual bool IsColliding(ICollidable otherCollidable)
         {
-            return CollisionBox.Intersects(otherCollidable.CollisionBox);
+            if (otherCollidable is Player || otherCollidable is Enemy)
+            {
+                return CollisionBox.Intersects(otherCollidable.CollisionBox);
+            }
+            else return false;
         }
 
+
         /// <summary>
-        /// The collision box of the ObstacleTile
+        /// Returns the collision box for an obstacleTile
         /// </summary>
-        public Rectangle CollisionBox
+        public virtual Rectangle CollisionBox
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y, 32, 32);
+                return new Rectangle((int)position.X, (int)position.Y, tileSize, tileSize);
             }
         }
     }

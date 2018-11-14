@@ -15,7 +15,14 @@ namespace THE_dungeon_crawler_game
         private float animationFPS;
         protected float rotation;
         protected Vector2 position = new Vector2(32,0);
-        public Vector2 Position { get => position; }
+        public Vector2 Position
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+            }
+        }
         protected PlayerDirection ePlayerDirection = PlayerDirection.down;
         
         
@@ -120,11 +127,9 @@ namespace THE_dungeon_crawler_game
         /// Standart draw function for game objects. Simply draws the sprite given to it.
         /// </summary>
         /// <param name="spriteBatch">The spritebatch used for the drawing</param>
-        /// <param name="gameTime"></param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-             spriteBatch.Draw(sprite, position, animationRectanglesSheet[0,currentAnimationIndex], Color.White);
-
+            spriteBatch.Draw(sprite, position, animationRectanglesSheet[0,currentAnimationIndex], Color.White);
         }
     }
 }
