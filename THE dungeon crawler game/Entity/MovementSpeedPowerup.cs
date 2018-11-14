@@ -42,11 +42,20 @@ namespace THE_dungeon_crawler_game
             player.Speed -= speedAmount;
         }
 
+        /// <summary>
+        /// checks if two objects are colliding
+        /// </summary>
+        /// <param name="otherCollidable">Another colliadable object (Has to have ICollidable)</param>
+        /// <returns>Returns true if two ICollidable objects are colliding, and false if they are not</returns>
         public bool IsColliding(ICollidable otherCollidable)
         {
             return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
         }
 
+        /// <summary>
+        /// If the PowerUp collides with a Player the power up will be used by the player
+        /// </summary>
+        /// <param name="otherCollidable">The other GameObject that is colliding with the PowerUp</param>
         public void DoCollision(ICollidable otherCollidable)
         {
             if (otherCollidable is Player)
@@ -56,6 +65,10 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        /// <summary>
+        /// Updated Draw method for he MovementSpeedPowerup
+        /// </summary>
+        /// <param name="spriteBatch">The sprite used for drawing the PowerUp</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, 32, 32), Color.White);     //Hardcoded the size here also.

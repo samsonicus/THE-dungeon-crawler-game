@@ -159,7 +159,7 @@ namespace THE_dungeon_crawler_game
         /// checks if two objects are colliding
         /// </summary>
         /// <param name="otherCollidable">Another colliadable object (Has to have ICollidable)</param>
-        /// <returns>Returns tru if two ICollidable objects are colliding, and false if they are not</returns>
+        /// <returns>Returns true if two ICollidable objects are colliding, and false if they are not</returns>
         public bool IsColliding(ICollidable otherCollidable)
         {
             return otherCollidable.CollisionBox.Intersects(this.CollisionBox);
