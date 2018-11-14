@@ -27,7 +27,11 @@ namespace THE_dungeon_crawler_game
             }
         }
 
-        private GameMap activeGameMap;
+        private static GameMap activeGameMap;
+        public static GameMap ActiveGameMap
+        {
+            get { return activeGameMap; }
+        }
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();

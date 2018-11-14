@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
 
-    class GameMap
+     public class GameMap
     {
         private int mapWidth;
         private int mapHeight;
@@ -59,6 +60,39 @@ namespace THE_dungeon_crawler_game
         {
             return new GameMap();
         }
+        /// <summary>
+        /// Change the active room
+        /// </summary>
+        /// <param name="x">collom to select</param>
+        /// <param name="y">row to select</param>
+        /// <exception cref="IndexOutOfRangeException">Throws out of index is you use negative numbers</exception>
+        public void SwapRoom(int x, int y)
+        {
+            Debug.Print($"x:{x},y:{y}");
+            if(x >= mapWidth || y >= mapHeight)
+            {
+                return;
+            }
+            roomsLayout[activeRoom.Y, activeRoom.X].RemoveRoomFromWorld();
+            roomsLayout[y, x].AddRoomToWorld();
+            if(y > activeRoom.Y && x == activeRoom.X)
+            {
+                GameWorld.Player.Position = new Vector2(8 * Tiles.tileSize, Tiles.tileSize+10);
+            }
+            else if(y < activeRoom.Y && x == activeRoom.X)
+            {
+                GameWorld.Player.Position = new Vector2(8 * Tiles.tileSize, 12*Tiles.tileSize);
+            }
+            else if(x > activeRoom.X && y == activeRoom.Y)
+            {
+                GameWorld.Player.Position = new Vector2(Tiles.tileSize+10, 6 * Tiles.tileSize);
+            }
+            else if(y == activeRoom.Y)
+            {
+                GameWorld.Player.Position = new Vector2(15 * Tiles.tileSize, 6 * Tiles.tileSize);
+            }
+            activeRoom = new Point(x, y);
+        }
 
         /// <summary>
         /// Generates the rooms in the map
@@ -69,9 +103,26 @@ namespace THE_dungeon_crawler_game
             {
                 for (int j = 0; j < mapWidth; j++)
                 {
-                    roomsLayout[i, j] = Room.GenerateRoom(new Point(i, j));
+                    roomsLayout[i, j] = Room.GenerateRoom(new Point(j, i));
+                    if(i > 0)
+                    {
+                        roomsLayout[i, j].AddDoor(Faceing.North);
+                    }
+                    if(i < mapHeight - 1)
+                    {
+                        roomsLayout[i, j].AddDoor(Faceing.South);
+                    }
+                    if (j > 0)
+                    {
+                        roomsLayout[i, j].AddDoor(Faceing.West);
+                    }
+                    if (j < mapWidth -1)
+                    {
+                        roomsLayout[i, j].AddDoor(Faceing.East);
+                    }
                 }
             }
+
         }
     }
 

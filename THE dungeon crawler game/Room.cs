@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
-    enum RoomType { StartRoom,NormalRoom,ExitRoom}
-    class Room
+    public enum RoomType { StartRoom,NormalRoom,ExitRoom}
+    public class Room
     {
         private RoomType roomType = RoomType.NormalRoom;
-
         /// <summary>
         /// Returns the room type of the room.
         /// </summary>
@@ -25,6 +24,11 @@ namespace THE_dungeon_crawler_game
         }
         private Point roomMapPos;
         private Tiles[,] roomTiles;
+        public Tiles[,] RoomTiles
+        {
+            get { return roomTiles; }
+        }
+        
 
         /// <summary>
         /// Room constructor
@@ -49,10 +53,10 @@ namespace THE_dungeon_crawler_game
                 {
                     if(i == 0 || i == roomTiles.GetLength(0)-1 || j == 0 || j == roomTiles.GetLength(1)-1)
                     {
-                        roomTiles[i, j] = new ObstacleTile(new Vector2((i * Tiles.tileSize) + (roomMapPos.X * 2000), (j * Tiles.tileSize) + (roomMapPos.Y * 2000)),"Tiles/BlueWall1");
+                        roomTiles[i, j] = new ObstacleTile(new Vector2(i * Tiles.tileSize, j * Tiles.tileSize),"Tiles/BlueWall1");
                         continue;
                     }
-                    roomTiles[i, j] = new Tiles(new Vector2((i * Tiles.tileSize)+(roomMapPos.X*2000), (j * Tiles.tileSize)+(roomMapPos.Y*2000)), "Tiles/MetalFloor1");
+                    roomTiles[i, j] = new Tiles(new Vector2(i * Tiles.tileSize, j * Tiles.tileSize), "Tiles/MetalFloor1");
                     Debug.Print($"Added Tile{roomTiles[i,j].Position}");
                 }
             }
@@ -63,6 +67,27 @@ namespace THE_dungeon_crawler_game
                 return;
             }
             return;
+        }
+
+        public void AddDoor(Faceing faceing)
+        {
+            switch (faceing)
+            {
+                case Faceing.North:
+                    roomTiles[8, 0] = new DoorTile(roomTiles[8, 0].Position, "Tiles/BlueDoor", new Point(roomMapPos.X, roomMapPos.Y-1));
+                    break;
+                case Faceing.East:
+                    roomTiles[16, 6] = new DoorTile(roomTiles[16,6].Position, "Tiles/BlueDoor", new Point(roomMapPos.X+1, roomMapPos.Y));
+                    break;
+                case Faceing.South:
+                    roomTiles[8, 12] = new DoorTile(roomTiles[8,12].Position, "Tiles/BlueDoor", new Point(roomMapPos.X, roomMapPos.Y+1));
+                    break;
+                case Faceing.West:
+                    roomTiles[0, 6] = new DoorTile(roomTiles[0,6].Position, "Tiles/BlueDoor", new Point(roomMapPos.X-1, roomMapPos.Y));
+                    break;
+                default:
+                    return;
+            }
         }
 
         /// <summary>
@@ -81,7 +106,7 @@ namespace THE_dungeon_crawler_game
         /// </summary>
         public void RemoveRoomFromWorld()
         {
-            foreach (Tiles tiles in roomTiles)
+            foreach (GameObject tiles in roomTiles)
             {
                 GameWorld.RemoveGameObject(tiles);
             }

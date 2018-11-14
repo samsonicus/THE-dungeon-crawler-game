@@ -15,17 +15,38 @@ namespace THE_dungeon_crawler_game
 
         }
 
-        public void DoCollision(ICollidable otherCollidable)
+        public virtual void DoCollision(ICollidable otherCollidable)
         {
             if(otherCollidable is Player || otherCollidable is Enemy)
             {
                 Vector2 pushDirection = (otherCollidable as Entity).Position - position;
                 pushDirection.Normalize();
+                if(pushDirection.Y < -0.5f)
+                {
+                    (otherCollidable as Entity).Position += -Vector2.UnitY * collisionPushDistance;
+                }
+                else if (pushDirection.Y > 0.5f)
+                {
+                    (otherCollidable as Entity).Position += Vector2.UnitY * collisionPushDistance;
+                }
+                else if (pushDirection.X < -0.5f)
+                {
+                    (otherCollidable as Entity).Position += -Vector2.UnitX * collisionPushDistance;
+                }
+                else if (pushDirection.X > 0.5f)
+                {
+                    (otherCollidable as Entity).Position += Vector2.UnitX * collisionPushDistance;
+                }
                 (otherCollidable as Entity).Position += pushDirection * collisionPushDistance;
             }
         }
 
-        public bool IsColliding(ICollidable otherCollidable)
+        /// <summary>
+        /// Checks if the tile is colliding
+        /// </summary>
+        /// <param name="otherCollidable">The collidable to check collision on</param>
+        /// <returns>Returns is the object is colliding</returns>
+        public virtual bool IsColliding(ICollidable otherCollidable)
         {
             if (otherCollidable is Player || otherCollidable is Enemy)
             {
@@ -34,6 +55,10 @@ namespace THE_dungeon_crawler_game
             else return false;
         }
 
+
+        /// <summary>
+        /// Returns the collision box for an obstacleTile
+        /// </summary>
         public virtual Rectangle CollisionBox
         {
             get

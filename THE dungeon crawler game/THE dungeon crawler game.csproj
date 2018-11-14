@@ -55,6 +55,7 @@
     <Compile Include="Interface\ICollidable.cs" />
     <Compile Include="Interface\ICombatEntity.cs" />
     <Compile Include="Entity\MovementSpeedPowerup.cs" />
+    <Compile Include="Tiles\DoorTile.cs" />
     <Compile Include="Tiles\ObstacleTile.cs" />
     <Compile Include="Entity\Player.cs" />
     <Compile Include="Program.cs" />
