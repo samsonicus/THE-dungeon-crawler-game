@@ -8,7 +8,13 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Enum for room types
+    /// </summary>
     public enum RoomType { StartRoom,NormalRoom,ExitRoom}
+    /// <summary>
+    /// Class for building and containing rooms
+    /// </summary>
     public class Room
     {
         private RoomType roomType = RoomType.NormalRoom;

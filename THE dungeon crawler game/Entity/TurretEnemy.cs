@@ -7,14 +7,16 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// A ranged turret Enemy
+    /// </summary>
     class TurretEnemy : Enemy, ICombatEntity
-
     {
-        
-
-
-        //public Rectangle CurrentAnimationRectangle { get => animationRectanglesSheet[(int), currentAnimationIndex]}
-
+        /// <summary>
+        /// Main consttructor for the turretEnemy
+        /// </summary>
+        /// <param name="position"> position of the enemy</param>
+        /// <param name="direction">direction of the enemy</param>
         public TurretEnemy(Vector2 position, Vector2 direction) : 
             base(10, 500, 1, 0.5f, 1, 5, 5, position, "treadbot1sheet", 0, direction)
         {

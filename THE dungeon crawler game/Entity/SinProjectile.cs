@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Class for a projectile following a sinus wave
+    /// </summary>
     class SinProjectile : Projectile
     {
         float elapsed = 0;

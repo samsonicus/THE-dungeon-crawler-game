@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Class for the movementspeed powerup
+    /// </summary>
     class MovementSpeedPowerup : PowerUp, ICollidable
     {
 

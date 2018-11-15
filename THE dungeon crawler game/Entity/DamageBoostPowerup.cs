@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Class for the damageboost powerup
+    /// </summary>
     class DamageBoostPowerup : PowerUp, ICollidable
     {
         int damageBoostAmount;
@@ -18,6 +21,9 @@ namespace THE_dungeon_crawler_game
             this.damageBoostAmount = damageBoostAmount;
         }
 
+        /// <summary>
+        /// Returns the  collisionbox
+        /// </summary>
         public Rectangle CollisionBox
         {
 

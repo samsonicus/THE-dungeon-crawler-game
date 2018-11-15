@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Projectile following a cosinus wave
+    /// </summary>
     class CosProjectile : Projectile
     {
         float elapsed = 0;

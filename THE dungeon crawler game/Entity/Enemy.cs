@@ -7,8 +7,13 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Enum for which way somthig is facing
+    /// </summary>
     public enum Faceing {North,East,South,West}
-
+    /// <summary>
+    /// Base enemy class
+    /// </summary>
     public class Enemy : Entity, ICombatEntity, ICollidable
     {
         protected const int visionRange = 700;
@@ -38,6 +43,9 @@ namespace THE_dungeon_crawler_game
             }
         }
 
+        /// <summary>
+        /// Gets the collisionbox of the enemy
+        /// </summary>
         public Rectangle CollisionBox
         {
             get

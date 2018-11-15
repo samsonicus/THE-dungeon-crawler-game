@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Superclass for all gameobjects
+    /// </summary>
     public abstract class GameObject
     {
         protected Texture2D sprite;

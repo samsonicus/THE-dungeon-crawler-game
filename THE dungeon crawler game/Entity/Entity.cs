@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Baseclass for all moveing gameobjects
+    /// </summary>
     public class Entity : GameObject
     {
 

@@ -9,6 +9,9 @@ using System.IO;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Enum for player direction
+    /// </summary>
     public enum PlayerDirection { down,up,right,left}
     /// <summary>
     /// This is the main type for your game.

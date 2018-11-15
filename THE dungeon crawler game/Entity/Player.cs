@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Base Player class
+    /// </summary>
     public class Player : Entity, ICollidable, ICombatEntity
     {
        

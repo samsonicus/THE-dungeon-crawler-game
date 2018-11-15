@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Base class for alle tiles in the game
+    /// </summary>
     public class Tiles : GameObject
     {
         public const int tileSize = 50;

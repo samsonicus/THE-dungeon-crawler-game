@@ -8,7 +8,9 @@ using Microsoft.Xna.Framework;
 
 namespace THE_dungeon_crawler_game
 {
-
+    /// <summary>
+    /// Class for containing and building the game map
+    /// </summary>
      public class GameMap
     {
         private int mapWidth;

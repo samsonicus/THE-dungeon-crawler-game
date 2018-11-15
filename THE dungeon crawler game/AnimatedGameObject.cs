@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// A simple class for a animated gameobject
+    /// </summary>
     class AnimatedGameObject:GameObject
     {
         protected Rectangle[] animationRectangles;

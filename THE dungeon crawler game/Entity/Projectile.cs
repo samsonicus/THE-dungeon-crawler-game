@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Base class for projectiles
+    /// </summary>
     class Projectile : Entity, ICollidable
     {
 
