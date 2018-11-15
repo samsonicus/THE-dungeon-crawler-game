@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Interface for collidable elements
+    /// </summary>
     public interface ICollidable
     {
         Rectangle CollisionBox { get; }

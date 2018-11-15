@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// Interface for entities involved combat
+    /// </summary>
     interface ICombatEntity
     {
         int Health { get;}

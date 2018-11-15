@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace THE_dungeon_crawler_game
 {
+    /// <summary>
+    /// A object displaying all the HUD elements
+    /// </summary>
     public class HUD : GameObject
     {
         /// <summary>
